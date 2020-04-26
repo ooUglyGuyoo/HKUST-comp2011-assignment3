@@ -17,11 +17,16 @@ int getDateCount(char* headerLine){
     return count - 4;
 }
 
-/*
+
 char** getDates(char *headerLine){
-
+    char date;
+    for (int i = 0; ; i++)
+    {
+        /* code */
+    }
+    
 }
-
+/*
 int getDay(char** dates, int dateCount, const char* date){
 
 }
