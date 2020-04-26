@@ -24,7 +24,7 @@ int main()
     }
     cout << "Loaded " << csvLineCount << " lines from " << csvFileName << endl;
     char* csvHeaderLine = csvLines[0];
-
+    //blablabla
     cout << "=======================================================" << endl;
     cout << "To warm up, trying getDateCount, getDates, and getDay..." << endl << endl;
     int dateCount = getDateCount(csvHeaderLine);
