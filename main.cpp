@@ -30,7 +30,7 @@ int main()
     int dateCount = getDateCount(csvHeaderLine);
     cout << "dateCount = " << dateCount << endl;
     cout << endl;
-
+// check git
 /*
     char** dates = getDates(csvHeaderLine);
     for(int i=0;i<dateCount;i++)
