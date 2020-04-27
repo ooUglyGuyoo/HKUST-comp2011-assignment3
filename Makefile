@@ -1,2 +1,3 @@
 ALL:
-	C:\\MinGW\\bin\\g++.exe -g *.cpp -o assignment3.exe
+	g++.exe -g *.cpp -o assignment3.exe
+	./assignment3.exe
