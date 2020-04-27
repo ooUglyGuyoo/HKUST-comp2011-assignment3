@@ -17,7 +17,7 @@ int getDateCount(char* headerLine){
     return count - 4;
 }
 
-
+/*
 char** getDates(char *headerLine){
     char *Dates[9999];
     char *date[6];
@@ -28,7 +28,10 @@ char** getDates(char *headerLine){
     for (int i = 0; headerLine[i] ; i++)
     {
         if (headerLine[i] == ',')
+        {
             count += 1;
+            delete [] date;
+        }
         if (count >= 4 && check == count && headerLine[i] != ',')
         {
             date[datebit] = headerLine[i];
@@ -39,11 +42,11 @@ char** getDates(char *headerLine){
             Dates[cinDates] = date;
             cinDates += 1;
         }
-        
+        else{}
         check = count;
     }
     return Dates;
-}
+}*/
 /*
 int getDay(char** dates, int dateCount, const char* date){
 
