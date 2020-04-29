@@ -1,3 +1,3 @@
 ALL:
-	g++.exe -g *.cpp -o assignment3.exe
-	./assignment3.exe
+	g++.exe -g *.cpp -o make.exe
+	./make.exe
