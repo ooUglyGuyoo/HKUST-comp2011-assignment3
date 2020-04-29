@@ -31,12 +31,13 @@ int main()
     cout << "dateCount = " << dateCount << endl;
     cout << endl;
 
+    cout << csvHeaderLine[10] << endl;
 /*
     char** dates = getDates(csvHeaderLine);
     for(int i=0;i<dateCount;i++)
         cout << "day " << i+1 << ": " << dates[i] << endl;
-    cout << endl;
-
+    cout << endl;*/
+/*
     cout << "Date 1/1/20 is Day " << getDay(dates, dateCount, "1/1/20") << endl;
     cout << "Date 1/22/20 is Day " << getDay(dates, dateCount, "1/22/20") << endl;
     cout << "Date 3/10/20 is Day " << getDay(dates, dateCount, "3/10/20") << endl;
