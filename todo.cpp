@@ -12,43 +12,36 @@ int getDateCount(char* headerLine){
     	if(headerLine[i] == ','){
     		count += 1;
     	}
-
     }
-    return count - 4;
+    return count - 3;
 }
 
 char** getDates(char *headerLine){
-    char *Dates[9999];
-    char date[10];
-    int check = -1;
-    int count = 0;
-    int datebit = 0;
-    int cinDates = 0;
+
+	int size = 9999;
+	char **datelist = new char*[size];
+	int state = 0;
+    int listcount = 0;
+    int start = -1;
+
     for (int i = 0; headerLine[i] ; i++)
     {
-        if (headerLine[i] == ',')
+        if (state == 0 && headerLine[i] != ',')
         {
-            count += 1;
-            char date;
-            datebit = 0;
+            state = 1;
+            start = i;
         }
-        
-        if (count >= 4 && check == count && headerLine[i] != ',')
+        else if (state == 1 && headerLine[i] == ',')
         {
-            date[datebit] = headerLine[i];
-            datebit += 1;
+            state = 0;
+            if (listcount >= 4) 
+            {
+                datelist[listcount-4] = substring(headerLine, start, i-1);
+            }
+            listcount++;
         }
-        else if (count >= 4 && check != count && headerLine[i] != ',')
-        {
-            Dates[cinDates] = date;
-            cinDates += 1;
-        }
-        else{}
-        check = count;
     }
-    cout << Dates << endl;
-    cout << date << endl;
-    return Dates;
+    return datelist;
 }
 /*
 int getDay(char** dates, int dateCount, const char* date){
