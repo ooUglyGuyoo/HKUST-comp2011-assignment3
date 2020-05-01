@@ -46,11 +46,11 @@ int main()
     cout << "Date 3/30/20 is Day " << getDay(dates, dateCount, "3/30/20") << endl;
     cout << "Date 12/30/20 is Day " << getDay(dates, dateCount, "12/30/20") << endl;
     cout << "=======================================================" << endl;
-/*    cout << "Performing getRegions..." << endl << endl;
+    cout << "Performing getRegions..." << endl << endl;
     Place* regions = getPlaces(csvLines, csvLineCount);
     int regionCount = csvLineCount - 1;
     printPlaces(regions, regionCount);
-
+/*
     cout << "=======================================================" << endl;
     cout << "Performing mergeAllProvinces..." << endl << endl;
     regionCount = mergeAllProvinces(regions, regionCount);
