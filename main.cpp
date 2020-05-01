@@ -39,14 +39,14 @@ int main()
         cout << "day " << i+1 << ": " << dates[i] << endl;
     cout << endl;
 
-/*
+
     cout << "Date 1/1/20 is Day " << getDay(dates, dateCount, "1/1/20") << endl;
     cout << "Date 1/22/20 is Day " << getDay(dates, dateCount, "1/22/20") << endl;
     cout << "Date 3/10/20 is Day " << getDay(dates, dateCount, "3/10/20") << endl;
     cout << "Date 3/30/20 is Day " << getDay(dates, dateCount, "3/30/20") << endl;
     cout << "Date 12/30/20 is Day " << getDay(dates, dateCount, "12/30/20") << endl;
     cout << "=======================================================" << endl;
-    cout << "Performing getRegions..." << endl << endl;
+/*    cout << "Performing getRegions..." << endl << endl;
     Place* regions = getPlaces(csvLines, csvLineCount);
     int regionCount = csvLineCount - 1;
     printPlaces(regions, regionCount);

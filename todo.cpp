@@ -40,14 +40,38 @@ char** getDates(char *headerLine){
             }
             listcount++;
         }
+
+        if (!headerLine[i+1])
+        {
+            datelist[listcount-4] = substring(headerLine, start, i);
+        }
+        
     }
     return datelist;
 }
-/*
+
 int getDay(char** dates, int dateCount, const char* date){
+    int dayCount = 1;
+    for (int i = 0; i < dateCount; i++)
+    {
+        if (strcmp(dates[i],date) == 0)
+        {
+            return dayCount;
+        }
+        else if (dates[i])
+        {
+            dayCount += 1;
+        }
+        else{}
 
+        if (!dates[i+1])
+        {
+            return 0;
+        }
+    }
+    
 }
-
+/*
 Place* getPlaces(char** csvLines, int csvLineCount){
 
 }
