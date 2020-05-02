@@ -99,20 +99,21 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                 else if (commaCount >= 5 && atoi(substring(currentLine, start, i-1)) != 0 && linecount == 0)
                 {
                     places[placeCount].headNode = dataStorage[dataCount].next;
-                    dataStorage[dataCount].day = commaCount -4;
-                    dataStorage[dataCount].number = atoi(substring(currentLine, start, i-1));
+                    dataStorage->day = commaCount -4;
+                    dataStorage->number = atoi(substring(currentLine, start, i-1));
+                    dataStorage->next = dataStorage[dataCount + 1].next;
                     dataCount += 1;
                     linecount += 1;
                     
                 }
                 else if (commaCount >= 5 && linecount != 0)
                 {
-                    dataStorage[dataCount - 1].next = dataStorage[dataCount].next;
-                    dataStorage[dataCount].day = commaCount - 4;
-                    dataStorage[dataCount].number = atoi(substring(currentLine, start, i-1));
+                    dataStorage->day = commaCount - 4;
+                    dataStorage->number = atoi(substring(currentLine, start, i-1));
+                    dataStorage->next = dataStorage[dataCount + 1].next;
                     dataCount += 1;
                     linecount += 1;
-                    cout << dataStorage[dataCount].day << " , " << dataStorage[dataCount].number << endl;                    
+                    //cout << dataStorage[dataCount].day << " , " << dataStorage[dataCount].number << endl;                    
                 }
                 else{}
 
@@ -120,10 +121,9 @@ Place* getPlaces(char** csvLines, int csvLineCount)
             }
             if (!currentLine[i+1])
             {
-                dataStorage[dataCount - 1].next = dataStorage[dataCount].next;
-                dataStorage[dataCount].day = commaCount -4;
-                dataStorage[dataCount].number = atoi(substring(currentLine, start, i));
-                dataStorage[dataCount].next = nullptr;
+                dataStorage->day = commaCount -4;
+                dataStorage->number = atoi(substring(currentLine, start, i));
+                dataStorage->next = nullptr;
                 dataCount += 1;
             }
         }
