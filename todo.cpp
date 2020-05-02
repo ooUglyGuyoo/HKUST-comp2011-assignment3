@@ -74,7 +74,6 @@ int getDay(char** dates, int dateCount, const char* date){
 Place* getPlaces(char** csvLines, int csvLineCount)
 {
     Place* places = new Place[999999];
-    Node* datap = new Node[999999];
     int dataCount = 0;
     int placeCount = 0;
     for (int i = 0; i < csvLineCount-1; i++)
@@ -83,9 +82,11 @@ Place* getPlaces(char** csvLines, int csvLineCount)
         int commaCount = 0;
         int start = 0;
         int linecount = 0;
+        Node* tail = new Node();
         for (int i = 0; currentLine[i] ; i++)
         {
-            Node* node = new Node;
+            
+            Node *datastorage = new Node();
             if (currentLine[i] == ',')
             {
                 commaCount += 1;
@@ -99,21 +100,21 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                 }
                 else if (commaCount >= 5 && atoi(substring(currentLine, start, i-1)) != 0 && linecount == 0)
                 {
-                    places[placeCount].headNode = node;
-                    node.day = commaCount - 4;
-                    node.number = atoi(substring(currentLine, start, i-1));
-                    datap->next = node;
-                    datap = node;
+                    places[placeCount].headNode = datastorage;
+                    datastorage->day = commaCount - 4;
+                    datastorage->number = atoi(substring(currentLine, start, i-1));
+                    tail->next = datastorage;
+                    tail = datastorage;
                     dataCount += 1;
                     linecount += 1;
                     
                 }
                 else if (commaCount >= 5 && linecount != 0)
                 {
-                    node.day = commaCount - 4;
-                    node.number = atoi(substring(currentLine, start, i-1));
-                    datap->next = node.next;
-                    datap = node.next;
+                    datastorage->day = commaCount - 4;
+                    datastorage->number = atoi(substring(currentLine, start, i-1));
+                    tail->next = datastorage;
+                    tail = datastorage;
                     dataCount += 1;
                     linecount += 1;
                     //cout << dataStorage[dataCount].day << " , " << dataStorage[dataCount].number << endl;                    
@@ -124,10 +125,10 @@ Place* getPlaces(char** csvLines, int csvLineCount)
             }
             if (!currentLine[i+1])
             {
-                node.day = commaCount - 4;
-                node.number = atoi(substring(currentLine, start, i-1));
-                datap->next = nullptr;
-                datap = nullptr;
+                datastorage->day = commaCount - 4;
+                datastorage->number = atoi(substring(currentLine, start, i-1));
+                tail->next = nullptr;
+                tail = nullptr;
                 dataCount += 1;
             }
         }
