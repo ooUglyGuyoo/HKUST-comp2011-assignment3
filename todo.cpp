@@ -107,7 +107,6 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                     tail = datastorage;
                     dataCount += 1;
                     linecount += 1;
-                    
                 }
                 else if (commaCount >= 5 && linecount != 0)
                 {
@@ -117,10 +116,8 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                     tail = datastorage;
                     dataCount += 1;
                     linecount += 1;
-                    //cout << dataStorage[dataCount].day << " , " << dataStorage[dataCount].number << endl;                    
                 }
                 else{}
-
                 start = i+1;
             }
             if (!currentLine[i+1])
