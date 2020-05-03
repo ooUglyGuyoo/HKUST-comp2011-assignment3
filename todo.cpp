@@ -128,6 +128,9 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                 tail = datastorage;
                 dataCount += 1;
                 linecount += 1;
+                datastorage->next = nullptr;
+                tail->next = nullptr;
+                tail = nullptr;
             }
         }
         placeCount += 1;
@@ -136,100 +139,25 @@ Place* getPlaces(char** csvLines, int csvLineCount)
 }
 
 int mergeAllProvinces(Place*& places, int placeCount, const char* home){
-    int regionCount = 0;
-    Place* regions = new Place[999999];
+    home = "Hong Kong";
     for (int i = 0; &places[i] ; i++)
     {
-        int REGIONCHECK = -1;
-        Node* tailfrom = new Node();
-        Node* tailto = new Node();
-
-        if (strcmp(places[i].province,home) != 0)
+        for (int j = 0; j<i ; j++)
         {
-            for (int j = 0; &regions[j] ; j++)
+            if(strcmp(places[i].region,places[j].region) == 0)
             {
-                if (strcmp(places[i].region,regions[j].region) == 0)
-                    REGIONCHECK = j;
-            }
-            if (REGIONCHECK == -1)
-            {
-                regionCount += 1;
-                regions[regionCount].region = places[i].region;
-                Node *data = new Node();
-                regions[regionCount].headNode = data;
-                tailfrom = places[i].headNode;
-                do  
+                Place* regions = new Place[placeCount];
+                for (int k = 0; ; i++)
                 {
-                    tailfrom = tailfrom->next;
-                    data->day = tailfrom->day;
-                    data->number = tailfrom->number;
-                    tailto->next = data;
-                    tailto = data;
-                }while(tailfrom->next != nullptr);
-            }
-            else
-            {
-                tailto = regions[REGIONCHECK].headNode;
-                tailfrom = places[i].headNode;
-                tailfrom = tailfrom->next;
-                if (tailto->day < tailfrom->day)
-                {
-                    while (tailto->day != tailfrom->day)
-                    {
-                        tailto = tailto->next;
-                    }
-                    do  
-                    {
-                        tailfrom = tailfrom->next;
-                        tailto->number = tailto->number + tailfrom->number;
-                        tailto = tailto->next;
-                    }while(tailfrom->next != nullptr);
+                    /* code */
                 }
-                else if(tailto->day > tailfrom->day)
-                {
-                    Node *data = new Node();
-                    int regionday = tailto->day;
-                    while (tailto->day != regionday)
-                    {
-                        data->day = tailfrom->day;
-                        data->number = tailfrom->number;
-                        tailto->next = data;
-                        tailto = data;
-                        tailfrom = tailfrom->next;
-                    }
-                    tailto->next = regions[REGIONCHECK].headNode->next;
-                    do  
-                    {
-                        tailto->number = data->number + tailfrom->number;
-                        tailto = tailto->next;
-                        tailfrom = tailfrom->next;
-                    }while(tailfrom->next != nullptr);
-                    
-                }  
+                
+                
             }
         }
-        else
-        {
-            char* HOME;
-            strcpy(HOME , home);
-            strcat(HOME , "(Home)");
-            regionCount += 1;
-            regions[regionCount].region = HOME;
-            Node *data = new Node();
-            regions[regionCount].headNode = data;
-            tailfrom = places[i].headNode;
-            do  
-            {
-                tailfrom = tailfrom->next;
-                data->day = tailfrom->day;
-                data->number = tailfrom->number;
-                tailto->next = data;
-                tailto = data;
-            }while(tailfrom->next != nullptr);
-
-        }
+        
     }
-    return regionCount;
+    return placeCount;
 }
 /*
 void normalizeDays(Place*& places, int& placeCount, int threshold){

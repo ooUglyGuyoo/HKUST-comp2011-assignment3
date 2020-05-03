@@ -49,7 +49,7 @@ int main()
     cout << "Performing getRegions..." << endl << endl;
     Place* regions = getPlaces(csvLines, csvLineCount);
     int regionCount = csvLineCount - 1;
-    printPlaces(regions, regionCount);
+    //printPlaces(regions, regionCount);
 
     cout << "=======================================================" << endl;
     cout << "Performing mergeAllProvinces..." << endl << endl;
@@ -60,7 +60,7 @@ int main()
     cout << "Performing normalizeDays..." << endl << endl;
     normalizeDays(regions, regionCount, 50);
     printPlaces(regions, regionCount);
-
+/*
     cout << "=======================================================" << endl;
     cout << "Performing changeToNDayGrowth..." << endl << endl;
     changeToNDayGrowth(regions, regionCount, 7);
