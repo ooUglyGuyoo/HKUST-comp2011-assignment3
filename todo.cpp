@@ -137,9 +137,7 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                 tail = datastorage;
                 dataCount += 1;
                 linecount += 1;
-                datastorage->next = nullptr;
                 tail->next = nullptr;
-                tail = nullptr;
             }
         }
         placeCount += 1;
@@ -262,34 +260,24 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
 }
 
 void normalizeDays(Place *& places, int& placeCount, int threshold){
-
-    cout << places[3].province << endl;
-    for (int i = 0; &places[i]; i++)
+    for (int i = 0; i < placeCount; i++)
     {
-        int daycount = 0;
-        Node* node = new Node[placeCount];
-        node->next = places[i].headNode;
-        node = node->next;
-        cout << "check for loop" << endl;
-        while (node->next != nullptr)
+        cout << "----------"<< i << endl;
+        while (places[i].headNode->next->number <= threshold && places[i].headNode != nullptr && places[i].headNode->next != nullptr)
         {
-            node = node->next;
-            cout << "check while loop" << endl;
-            if (node->number >= threshold && daycount == 0)
+            cout << places[i].headNode->next->number << endl;
+            places[i].headNode->next->day = 1;
+            if (places[i].headNode->next->next != nullptr)
             {
-                cout << "check if" << endl;
-                places[i].headNode = node;
-                daycount += 1;
-                node->day = daycount;
+                cout << "WTM" << endl;
+                places[i].headNode = places[i].headNode->next;
             }
-            else if (daycount > 0)
+            else
             {
-                cout << "check else if" << endl;
-                daycount += 1;
-                node->day = daycount;
+                cout << "WDNMD" << endl;
+                places[i].headNode = nullptr;
             }
         }
-        cout << places[i].province << endl;
     }
 }
 /*
