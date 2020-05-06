@@ -148,16 +148,15 @@ Place* getPlaces(char** csvLines, int csvLineCount)
 int mergeAllProvinces(Place*& places, int placeCount, const char* home){
     home = "Hong Kong";
     // merge the data and set all already merged provinces's region and province into nullptr
-    for (int i = 0; &places[i] ; i++)
+    for (int i = 0; i < placeCount ; i++)
     {
         for (int j = 0; j<i ; j++)
         {
             if(places[j].province != nullptr && places[j].region != nullptr && strcmp(places[i].region,places[j].region) == 0)
             {
-                placeCount -= 1; cout << "placecount - 1" << endl;
-                if (places[i].headNode->next->day == places[j].headNode->next->day)
+                if ( places[i].headNode->next->day == places[j].headNode->next->day)
                 {
-                    cout << "copy " << i << " to " << j << endl;
+                    cout << "copy " << i + 2 << " to " << j + 2 << endl;
                     cout << "places[i].headNode->next->day == places[j].headNode->next->day" << endl;
                     places[i].region = nullptr;
                     places[i].province = nullptr;
@@ -165,68 +164,56 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                     Node* tailfrom = new Node();
                     tailfrom = places[i].headNode;
                     tailto = places[j].headNode;
-                    while (tailto->next != nullptr)
+                    while (tailfrom->next != nullptr && tailto->next != nullptr)
                     {
+                        tailto->number += tailfrom->number;
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
-                        tailto->number += tailfrom->next->number;
                     }
-                    tailfrom->next = nullptr;
-                    tailto->next = nullptr;
-                    tailfrom = nullptr;
-                    tailto = nullptr;
                 }
-                else if (places[i].headNode->next->day > places[j].headNode->next->day)
+                else if ( places[i].headNode->next->day > places[j].headNode->next->day)
                 {
-                    cout << "copy " << i << " to " << j << endl;
+                    cout << "copy " << i + 2 << " to " << j + 2 << endl;
                     cout << "places[i].headNode->next->day > places[j].headNode->next->day" << endl;
-                    int difference = places[j].headNode->next->day - places[i].headNode->next->day;
+                    int difference = places[i].headNode->next->day - places[j].headNode->next->day;
                     places[i].region = nullptr;
                     places[i].province = nullptr;
                     Node* tailto = new Node();
                     Node* tailfrom = new Node();
                     tailfrom = places[i].headNode;
                     tailto = places[j].headNode;
-                    for (int k = 0; k <= difference; k++)
+                    for (int k = 0; k < difference; k++)
                     {
                         tailto = tailto->next;
                     }
-                    while (tailto->next != nullptr)
+                    while (tailto->next != nullptr && tailfrom->next != nullptr)
                     {
+                        tailto->number += tailfrom->number;
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
-                        tailto->number += tailfrom->next->number;
                     }
-                    tailfrom->next = nullptr;
-                    tailto->next = nullptr;
-                    tailfrom = nullptr;
-                    tailto = nullptr;
                 }
-                else    //places[i].headNode->next->day < places[j].headNode->next->day
+                else if( places[i].headNode->next->day < places[j].headNode->next->day )    //places[i].headNode->next->day < places[j].headNode->next->day
                 {
-                    cout << "copy " << j << " to " << i << endl;
+                    cout << "copy " << j + 2 << " to " << i + 2 << endl;
                     cout << "places[i].headNode->next->day < places[j].headNode->next->day" << endl;
-                    int difference = places[i].headNode->next->day - places[j].headNode->next->day;
+                    int difference = places[j].headNode->next->day - places[i].headNode->next->day;
                     places[j].region = nullptr;
                     places[j].province = nullptr;
                     Node* tailto = new Node();
                     Node* tailfrom = new Node();
                     tailfrom = places[j].headNode;
                     tailto = places[i].headNode;
-                    for (int k = 0; k <= difference; k++)
+                    for (int k = 0; k < difference; k++)
                     {
                         tailto = tailto->next;
                     }
-                    while (tailto->next != nullptr)
+                    while (tailfrom->next != nullptr && tailto->next != nullptr)
                     {
+                        tailto->number += tailfrom->number;
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
-                        tailto->number += tailfrom->next->number;
                     }
-                    tailfrom->next = nullptr;
-                    tailto->next = nullptr;
-                    tailfrom = nullptr;
-                    tailto = nullptr;
                 }
             }
         }
@@ -267,18 +254,22 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
         {
             places[i].headNode->next->day = 1;
             day = 1;
-            if (places[i].headNode->next->next != nullptr){places[i].headNode = places[i].headNode->next;}
-            else{places[i].headNode = nullptr;}
+            if (places[i].headNode->next->next != nullptr)
+            {places[i].headNode = places[i].headNode->next;}
+            else
+            {places[i].headNode = nullptr;}
         }
         if (day >= 1)
         {
             Node* current = new Node();
-            current = places[i].headNode->next;
-            cout << day << endl;
-            while (current->next != nullptr)
+            current = places[i].headNode;
+            while (current != nullptr)
             {
-                
-            }   
+                current->day = day;
+                current = current->next;
+                day = day + 1;
+            }
+            delete [] current ;
         }
     }
 }
