@@ -86,7 +86,6 @@ Place* getPlaces(char** csvLines, int csvLineCount)
         Node* tail = new Node();
         for (int i = 0; currentLine[i] ; i++)
         {
-            
             Node *datastorage = new Node();
             if (currentLine[i] == ',')
             {
@@ -101,7 +100,6 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                     {
                         places[placeCount].province = substring(currentLine, start, i-1);
                     }
-                    
                 }
                 else if (commaCount == 2)
                 {
@@ -147,21 +145,30 @@ Place* getPlaces(char** csvLines, int csvLineCount)
 
 int mergeAllProvinces(Place*& places, int placeCount, const char* home){
     home = "Hong Kong";
+    int originalPlaceCount = placeCount;
+    if (places[247].headNode == nullptr) {
+                    cout << "null!" << endl;
+                    exit(1);
+                }
     // merge the data and set all already merged provinces's region and province into nullptr
-    for (int i = 0; i < placeCount ; i++)
+    for (int i = 0; i < originalPlaceCount ; i++)
     {
         for (int j = 0; j<i ; j++)
         {
-            if(places[j].province != nullptr && places[j].region != nullptr && strcmp(places[i].region,places[j].region) == 0)
+            //cout << i << " " << j << endl;
+            if(places[j].province != nullptr 
+            && places[j].region != nullptr 
+            && places[i].region != nullptr
+            && places[i].headNode != nullptr 
+            && places[j].headNode != nullptr 
+            && strcmp(places[i].region,places[j].region) == 0 )
             {
                 if ( places[i].headNode->next->day == places[j].headNode->next->day)
                 {
-                    cout << "copy " << i + 2 << " to " << j + 2 << endl;
-                    cout << "places[i].headNode->next->day == places[j].headNode->next->day" << endl;
                     places[i].region = nullptr;
                     places[i].province = nullptr;
-                    Node* tailto = new Node();
-                    Node* tailfrom = new Node();
+                    Node* tailto ;
+                    Node* tailfrom ;
                     tailfrom = places[i].headNode;
                     tailto = places[j].headNode;
                     while (tailfrom->next != nullptr && tailto->next != nullptr)
@@ -173,13 +180,11 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                 }
                 else if ( places[i].headNode->next->day > places[j].headNode->next->day)
                 {
-                    cout << "copy " << i + 2 << " to " << j + 2 << endl;
-                    cout << "places[i].headNode->next->day > places[j].headNode->next->day" << endl;
                     int difference = places[i].headNode->next->day - places[j].headNode->next->day;
                     places[i].region = nullptr;
                     places[i].province = nullptr;
-                    Node* tailto = new Node();
-                    Node* tailfrom = new Node();
+                    Node* tailto ;
+                    Node* tailfrom;
                     tailfrom = places[i].headNode;
                     tailto = places[j].headNode;
                     for (int k = 0; k < difference; k++)
@@ -195,13 +200,11 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                 }
                 else if( places[i].headNode->next->day < places[j].headNode->next->day )    //places[i].headNode->next->day < places[j].headNode->next->day
                 {
-                    cout << "copy " << j + 2 << " to " << i + 2 << endl;
-                    cout << "places[i].headNode->next->day < places[j].headNode->next->day" << endl;
                     int difference = places[j].headNode->next->day - places[i].headNode->next->day;
                     places[j].region = nullptr;
                     places[j].province = nullptr;
-                    Node* tailto = new Node();
-                    Node* tailfrom = new Node();
+                    Node* tailto;
+                    Node* tailfrom;
                     tailfrom = places[j].headNode;
                     tailto = places[i].headNode;
                     for (int k = 0; k < difference; k++)
@@ -221,7 +224,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
     // create a new array that is just big enough to hold the remaining places and copy the old array inside
     Place* mergedplaces = new Place[placeCount];
     int mergedplacesCount = 0;
-    for (int i = 0; &places[i]; i++)
+    for (int i = 0; i < placeCount ; i++)
     {
         if (places[i].region != nullptr)
         {
@@ -231,10 +234,9 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
             mergedplacesCount += 1;
         }
     }
-    //delete the old array
     delete [] places;
     //
-    for (int i = 0; &places[i]; i++)
+    for (int i = 0; i < placeCount; i++)
     {
         if (places[i].region != nullptr)
         {
