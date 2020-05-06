@@ -262,21 +262,23 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
 void normalizeDays(Place *& places, int& placeCount, int threshold){
     for (int i = 0; i < placeCount; i++)
     {
-        cout << "----------"<< i << endl;
-        while (places[i].headNode->next->number <= threshold && places[i].headNode != nullptr && places[i].headNode->next != nullptr)
+        int day = 0;
+        while (places[i].headNode != nullptr && places[i].headNode->number <= threshold && places[i].headNode->next != nullptr)
         {
-            cout << places[i].headNode->next->number << endl;
             places[i].headNode->next->day = 1;
-            if (places[i].headNode->next->next != nullptr)
+            day = 1;
+            if (places[i].headNode->next->next != nullptr){places[i].headNode = places[i].headNode->next;}
+            else{places[i].headNode = nullptr;}
+        }
+        if (day >= 1)
+        {
+            Node* current = new Node();
+            current = places[i].headNode->next;
+            cout << day << endl;
+            while (current->next != nullptr)
             {
-                cout << "WTM" << endl;
-                places[i].headNode = places[i].headNode->next;
-            }
-            else
-            {
-                cout << "WDNMD" << endl;
-                places[i].headNode = nullptr;
-            }
+                
+            }   
         }
     }
 }
