@@ -146,32 +146,47 @@ Place* getPlaces(char** csvLines, int csvLineCount)
 int mergeAllProvinces(Place*& places, int placeCount, const char* home){
     home = "Hong Kong";
     int originalPlaceCount = placeCount;
-    if (places[247].headNode == nullptr) {
-                    cout << "null!" << endl;
-                    exit(1);
-                }
+    for (int i = 0; i < placeCount; i++)
+    {
+        if (places[i].province != nullptr && strcmp(places[i].province,home) == 0)
+        {
+            char* newString = new char[16];
+            strcpy(newString, home);
+            strcat(newString, "(Home)");
+            places[i].region = newString;
+            places[i].province = nullptr;
+        }
+        if (places[i].headNode == nullptr)
+        {
+            places[i].region = nullptr;
+            places[i].province = nullptr;
+            placeCount -= 1;
+        }
+        
+    }
+    
     // merge the data and set all already merged provinces's region and province into nullptr
     for (int i = 0; i < originalPlaceCount ; i++)
     {
         for (int j = 0; j<i ; j++)
         {
-            //cout << i << " " << j << endl;
-            if(places[j].province != nullptr 
-            && places[j].region != nullptr 
+            if(places[j].region != nullptr 
             && places[i].region != nullptr
             && places[i].headNode != nullptr 
             && places[j].headNode != nullptr 
             && strcmp(places[i].region,places[j].region) == 0 )
             {
+                placeCount -= 1;
                 if ( places[i].headNode->next->day == places[j].headNode->next->day)
                 {
+                    //cout << "merge " << i << " to " << j << endl;
                     places[i].region = nullptr;
                     places[i].province = nullptr;
                     Node* tailto ;
                     Node* tailfrom ;
                     tailfrom = places[i].headNode;
                     tailto = places[j].headNode;
-                    while (tailfrom->next != nullptr && tailto->next != nullptr)
+                    while (tailfrom != nullptr && tailto != nullptr)
                     {
                         tailto->number += tailfrom->number;
                         tailfrom = tailfrom->next;
@@ -180,6 +195,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                 }
                 else if ( places[i].headNode->next->day > places[j].headNode->next->day)
                 {
+                    //cout << "merge " << i << " to " << j << endl;
                     int difference = places[i].headNode->next->day - places[j].headNode->next->day;
                     places[i].region = nullptr;
                     places[i].province = nullptr;
@@ -191,7 +207,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                     {
                         tailto = tailto->next;
                     }
-                    while (tailto->next != nullptr && tailfrom->next != nullptr)
+                    while (tailto != nullptr && tailfrom != nullptr)
                     {
                         tailto->number += tailfrom->number;
                         tailfrom = tailfrom->next;
@@ -200,6 +216,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                 }
                 else if( places[i].headNode->next->day < places[j].headNode->next->day )    //places[i].headNode->next->day < places[j].headNode->next->day
                 {
+                    //cout << "merge " << j << " to " << i << endl;
                     int difference = places[j].headNode->next->day - places[i].headNode->next->day;
                     places[j].region = nullptr;
                     places[j].province = nullptr;
@@ -211,7 +228,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                     {
                         tailto = tailto->next;
                     }
-                    while (tailfrom->next != nullptr && tailto->next != nullptr)
+                    while (tailfrom != nullptr && tailto != nullptr)
                     {
                         tailto->number += tailfrom->number;
                         tailfrom = tailfrom->next;
@@ -224,7 +241,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
     // create a new array that is just big enough to hold the remaining places and copy the old array inside
     Place* mergedplaces = new Place[placeCount];
     int mergedplacesCount = 0;
-    for (int i = 0; i < placeCount ; i++)
+    for (int i = 0; i < originalPlaceCount ; i++)
     {
         if (places[i].region != nullptr)
         {
@@ -235,16 +252,8 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
         }
     }
     delete [] places;
-    //
-    for (int i = 0; i < placeCount; i++)
-    {
-        if (places[i].region != nullptr)
-        {
-            places[i].region = mergedplaces[i].region;
-            places[i].headNode = mergedplaces[i].headNode;
-        }
-    }
-
+    places = mergedplaces;
+    cout << placeCount << endl;
     return placeCount;
 }
 
