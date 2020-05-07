@@ -258,6 +258,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
 }
 
 void normalizeDays(Place *& places, int& placeCount, int threshold){
+    int originalPlaceCount = placeCount;
     for (int i = 0; i < placeCount; i++)
     {
         int day = 0;
@@ -283,6 +284,28 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
             delete [] current ;
         }
     }
+
+    for (int i = 0; i < originalPlaceCount; i++)
+    {
+        if (places[i].headNode == nullptr)
+        {
+            placeCount -= 1;
+        }
+    }
+    Place* normplaces = new Place[placeCount];
+    int normCount = 0;
+    for (int i = 0; i < originalPlaceCount; i++)
+    {
+        if (places[i].headNode != nullptr)
+        {
+            normplaces[normCount].region = places[i].region;
+            normplaces[normCount].province = places[i].province;
+            normplaces[normCount].headNode = places[i].headNode;
+            normCount += 1;
+        }
+    }
+    delete [] places;
+    places = normplaces;
 }
 /*
 void changeToNDayGrowth(Place* places, int placeCount, int n){

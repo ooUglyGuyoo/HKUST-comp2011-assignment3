@@ -54,11 +54,11 @@ int main()
     cout << "=======================================================" << endl;
     cout << "Performing mergeAllProvinces..." << endl << endl;
     regionCount = mergeAllProvinces(regions, regionCount);
-    printPlaces(regions, regionCount);
+    //printPlaces(regions, regionCount);
 
     cout << "=======================================================" << endl;
     cout << "Performing normalizeDays..." << endl << endl;
-    //normalizeDays(regions, regionCount, 50);
+    normalizeDays(regions, regionCount, 50);
     //printPlaces(regions, regionCount);
 /*
     cout << "=======================================================" << endl;
