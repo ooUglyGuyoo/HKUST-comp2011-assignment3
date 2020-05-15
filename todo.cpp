@@ -253,16 +253,15 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
     }
     delete [] places;
     places = mergedplaces;
-    cout << placeCount << endl;
     return placeCount;
 }
 
 void normalizeDays(Place *& places, int& placeCount, int threshold){
     int originalPlaceCount = placeCount;
-    for (int i = 0; i < placeCount; i++)
+    for (int i = 0; i < originalPlaceCount; i++)
     {
         int day = 0;
-        while (places[i].headNode != nullptr && places[i].headNode->number <= threshold && places[i].headNode->next != nullptr)
+        while (places[i].headNode != nullptr && places[i].headNode->number <= threshold)
         {
             places[i].headNode->next->day = 1;
             day = 1;
@@ -271,6 +270,16 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
             else
             {places[i].headNode = nullptr;}
         }
+        if (places[i].headNode != nullptr && places[i].headNode->number >= threshold && day == 0)
+        {
+            places[i].headNode->next->day = 1;
+            day = 1;
+            if (places[i].headNode->next->next != nullptr)
+            {places[i].headNode = places[i].headNode->next;}
+            else
+            {places[i].headNode = nullptr;}
+        }
+        
         if (day >= 1)
         {
             Node* current = new Node();
@@ -281,7 +290,7 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
                 current = current->next;
                 day = day + 1;
             }
-            delete [] current ;
+            delete [] current;
         }
     }
 
@@ -311,7 +320,7 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
 void changeToNDayGrowth(Place* places, int placeCount, int n){
 
 }
-
+/*
 void writeCSV(const char* csvFileName, Place* places, int placeCount){
 
 }

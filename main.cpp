@@ -59,7 +59,7 @@ int main()
     cout << "=======================================================" << endl;
     cout << "Performing normalizeDays..." << endl << endl;
     normalizeDays(regions, regionCount, 50);
-    //printPlaces(regions, regionCount);
+    printPlaces(regions, regionCount);
 /*
     cout << "=======================================================" << endl;
     cout << "Performing changeToNDayGrowth..." << endl << endl;
