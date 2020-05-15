@@ -192,6 +192,8 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
+                    delete tailto;
+                    delete tailfrom;
                 }
                 else if ( places[i].headNode->next->day > places[j].headNode->next->day)
                 {
@@ -213,6 +215,8 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
+                    delete tailto;
+                    delete tailfrom;
                 }
                 else if( places[i].headNode->next->day < places[j].headNode->next->day )    //places[i].headNode->next->day < places[j].headNode->next->day
                 {
@@ -234,6 +238,8 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
+                    delete tailto;
+                    delete tailfrom;
                 }
             }
         }
@@ -253,6 +259,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
     }
     delete [] places;
     places = mergedplaces;
+    delete [] mergedplaces;
     return placeCount;
 }
 
@@ -261,7 +268,7 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
     for (int i = 0; i < originalPlaceCount; i++)
     {
         int day = 0;
-        while (places[i].headNode != nullptr && places[i].headNode->number <= threshold)
+        while (places[i].headNode != nullptr && places[i].headNode->number < threshold)
         {
             places[i].headNode->next->day = 1;
             day = 1;
@@ -270,19 +277,18 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
             else
             {places[i].headNode = nullptr;}
         }
-        if (places[i].headNode != nullptr && places[i].headNode->number >= threshold && day == 0)
+        while (places[i].headNode != nullptr && places[i].headNode->number >= threshold && day == 0)
         {
             places[i].headNode->next->day = 1;
             day = 1;
-            if (places[i].headNode->next->next != nullptr)
-            {places[i].headNode = places[i].headNode->next;}
+            if (places[i].headNode->next->next != nullptr){}
             else
             {places[i].headNode = nullptr;}
         }
         
         if (day >= 1)
         {
-            Node* current = new Node();
+            Node* current;
             current = places[i].headNode;
             while (current != nullptr)
             {
@@ -290,7 +296,7 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
                 current = current->next;
                 day = day + 1;
             }
-            delete [] current;
+            delete current;
         }
     }
 
@@ -315,10 +321,38 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
     }
     delete [] places;
     places = normplaces;
+    delete [] normplaces;
 }
-/*
-void changeToNDayGrowth(Place* places, int placeCount, int n){
 
+void changeToNDayGrowth(Place* places, int placeCount, int n){
+    for (int i = 0; i < placeCount ; i++)
+    {
+        //cout << i << endl;
+        int storepre = 0;
+        int storecur = 0;
+        Place* copyplaces = new Place();
+        copyplaces = places;
+        Node* head;
+        Node* tail;
+        head = copyplaces[i].headNode;
+        tail = places[i].headNode;
+        for (int j = 0; j < n && tail->next != nullptr; j++)
+        {
+            tail = tail->next;
+        }
+        if(tail != nullptr && head != nullptr){
+            while (tail != nullptr)
+            {
+                tail->number = tail->number - head->number;
+                tail = tail->next;
+                head = head->next;
+            }
+        }
+        delete [] copyplaces;
+        delete head;
+        delete tail;
+    }
+    
 }
 /*
 void writeCSV(const char* csvFileName, Place* places, int placeCount){
