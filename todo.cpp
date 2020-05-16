@@ -253,23 +253,18 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
     for (int i = 0; i < originalPlaceCount; i++)
     {
         int day = 0;
-        while (places[i].headNode != nullptr && places[i].headNode->number < threshold)
+        Node* ptr;
+        ptr = places[i].headNode;
+        while (ptr != nullptr)
         {
-            places[i].headNode->next->day = 1;
-            day = 1;
-            if (places[i].headNode->next->next != nullptr)
-            {places[i].headNode = places[i].headNode->next;}
-            else
-            {places[i].headNode = nullptr;}
+            if (ptr->number >= threshold)
+            {
+                day = 1;
+                break;
+            }
+            ptr = ptr->next;
         }
-        while (places[i].headNode != nullptr && places[i].headNode->number >= threshold && day == 0)
-        {
-            places[i].headNode->next->day = 1;
-            day = 1;
-            if (places[i].headNode->next->next != nullptr){}
-            else
-            {places[i].headNode = nullptr;}
-        }
+        places[i].headNode = ptr;
         
         if (day >= 1)
         {

@@ -12,7 +12,7 @@ int main()
     cout << "=======================================================" << endl;
     int csvLineCount;
     const char* csvFileName = "time_series_covid19_confirmed_global.csv";
-    // csvFileName = "test.csv"; //uncomment this to read the other file "test.csv"
+    csvFileName = "test.csv"; //uncomment this to read the other file "test.csv"
     cout << "Reading the CSV file..." << endl;
     char** csvLines = readCSV(csvFileName, csvLineCount);
     if(csvLines == nullptr)
@@ -31,8 +31,6 @@ int main()
     cout << "dateCount = " << dateCount << endl;
     cout << endl;
 
-    cout << csvHeaderLine[10] << endl;
-
     char** dates = getDates(csvHeaderLine);
 
     for(int i=0;i<dateCount;i++)
@@ -49,17 +47,17 @@ int main()
     cout << "Performing getRegions..." << endl << endl;
     Place* regions = getPlaces(csvLines, csvLineCount);
     int regionCount = csvLineCount - 1;
-    //printPlaces(regions, regionCount);
+    printPlaces(regions, regionCount);
 
     cout << "=======================================================" << endl;
     cout << "Performing mergeAllProvinces..." << endl << endl;
     regionCount = mergeAllProvinces(regions, regionCount);
-    //printPlaces(regions, regionCount);
+    printPlaces(regions, regionCount);
 
     cout << "=======================================================" << endl;
     cout << "Performing normalizeDays..." << endl << endl;
     normalizeDays(regions, regionCount, 50);
-    //printPlaces(regions, regionCount);
+    printPlaces(regions, regionCount);
 
     cout << "=======================================================" << endl;
     cout << "Performing changeToNDayGrowth..." << endl << endl;
