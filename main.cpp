@@ -54,7 +54,7 @@ int main()
     cout << "=======================================================" << endl;
     cout << "Performing mergeAllProvinces..." << endl << endl;
     regionCount = mergeAllProvinces(regions, regionCount);
-    printPlaces(regions, regionCount);
+    //printPlaces(regions, regionCount);
 
     cout << "=======================================================" << endl;
     cout << "Performing normalizeDays..." << endl << endl;
@@ -64,21 +64,24 @@ int main()
     cout << "=======================================================" << endl;
     cout << "Performing changeToNDayGrowth..." << endl << endl;
     changeToNDayGrowth(regions, regionCount, 7);
-    //printPlaces(regions, regionCount);
-/*
+    printPlaces(regions, regionCount);
+
     cout << "=======================================================" << endl;
     cout << "Writing to csv..." << endl;
     writeCSV("output.csv", regions, regionCount);
 
     cout << "=======================================================" << endl;
     cout << "Performing deallocations..." << endl;
+    //cout << "Deallocating csvLines..." << endl;
     deallocateCSVLines(csvLines, csvLineCount);
+    //cout << "Deallocating dates..." << endl;
     deallocateDates(dates, dateCount);
+    //cout << "Deallocating regions..." << endl;
     deallocatePlaces(regions, regionCount);
     cout << "As a good programmer, please make sure there is no memory leak of anything at this point." << endl;
 
     cout << "=======================================================" << endl;
     cout << "Done! Please take care and stay healthy! :)" << endl;
-    */
+
     return 0;
 }
