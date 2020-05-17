@@ -354,9 +354,6 @@ void changeToNDayGrowth(Place* places, int placeCount, int n){
             }
             tail -> next = nullptr;
         }
-        
-            
-        
         delete [] copynum;
     }
 }
@@ -391,7 +388,6 @@ void deallocateCSVLines(char** csvLines, int csvLineCount){
     {
         delete [] &csvLines[i];
         delete [] csvLines[i];
-        delete [] csvLines;
     }
 }
 
@@ -412,7 +408,6 @@ void deallocatePlaces(Place* places, int placeCount){
     for (int i = 0; i < placeCount; i++)
     {
         delete [] &places[i];
-        delete [] places;
     }
 }
 
