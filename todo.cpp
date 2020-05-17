@@ -296,11 +296,11 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
                 day = 1;
                 break;
             }
-            ptr = ptr->next;
+            Node* next = ptr->next;
+            delete ptr;
+            ptr = next;
         }
         places[i].headNode = ptr;
-        
-        if (day >= 1)
         {
             Node* current;
             current = places[i].headNode;
@@ -321,6 +321,7 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
             placeCount -= 1;
         }
     }
+
     Place* normplaces = new Place[placeCount];
     int normCount = 0;
     for (int i = 0; i < originalPlaceCount; i++)

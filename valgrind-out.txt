@@ -1,210 +1,174 @@
-==23476== Memcheck, a memory error detector
-==23476== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==23476== Using Valgrind-3.15.0-608cb11914-20190413X and LibVEX; rerun with -h for copyright info
-==23476== Command: ./a.out
-==23476== Parent PID: 23466
-==23476== 
---23476-- 
---23476-- Valgrind options:
---23476--    --leak-check=full
---23476--    --show-leak-kinds=all
---23476--    --track-origins=yes
---23476--    --verbose
---23476--    --log-file=valgrind-out.txt
---23476-- Contents of /proc/version:
---23476--   Linux version 5.4.14-2-MANJARO (builduser@development) (gcc version 9.2.0 (GCC)) #1 SMP PREEMPT Fri Jan 24 09:34:16 UTC 2020
---23476-- 
---23476-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
---23476-- Page sizes: currently 4096, max supported 4096
---23476-- Valgrind library directory: /usr/lib/valgrind
---23476-- Reading syms from /home/rm/Documents/comp2011-assignment3/a.out
---23476-- Reading syms from /usr/lib/ld-2.31.so
---23476-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
---23476--    object doesn't have a dynamic symbol table
---23476-- Scheduler: using generic scheduler lock implementation.
---23476-- Reading suppressions file: /usr/lib/valgrind/default.supp
-==23476== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-23476-by-rm-on-???
-==23476== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-23476-by-rm-on-???
-==23476== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-23476-by-rm-on-???
-==23476== 
-==23476== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==23476== don't want to do, unless you know exactly what you're doing,
-==23476== or are doing some strange experiment):
-==23476==   /usr/lib/valgrind/../../bin/vgdb --pid=23476 ...command...
-==23476== 
-==23476== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==23476==   /path/to/gdb ./a.out
-==23476== and then give GDB the following command
-==23476==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=23476
-==23476== --pid is optional if only one valgrind process is running
-==23476== 
---23476-- REDIR: 0x40212b0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c7532 (vgPlain_amd64_linux_REDIR_FOR_strlen)
---23476-- REDIR: 0x4021080 (ld-linux-x86-64.so.2:index) redirected to 0x580c754c (vgPlain_amd64_linux_REDIR_FOR_index)
---23476-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
---23476-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
-==23476== WARNING: new redirection conflicts with existing -- ignoring it
---23476--     old: 0x040212b0 (strlen              ) R-> (0000.0) 0x580c7532 vgPlain_amd64_linux_REDIR_FOR_strlen
---23476--     new: 0x040212b0 (strlen              ) R-> (2007.0) 0x0483cda0 strlen
---23476-- REDIR: 0x401da90 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483dc90 (strcmp)
---23476-- REDIR: 0x4021810 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4841670 (mempcpy)
---23476-- Reading syms from /usr/lib/libstdc++.so.6.0.28
---23476-- Reading syms from /usr/lib/libm-2.31.so
---23476--    object doesn't have a symbol table
---23476-- Reading syms from /usr/lib/libgcc_s.so.1
---23476-- Reading syms from /usr/lib/libc-2.31.so
---23476-- REDIR: 0x4c77c40 (libc.so.6:memmove) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c76fc0 (libc.so.6:strncpy) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77f70 (libc.so.6:strcasecmp) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c768e0 (libc.so.6:strcat) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77020 (libc.so.6:rindex) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c79310 (libc.so.6:rawmemchr) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c917f0 (libc.so.6:wmemchr) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c91330 (libc.so.6:wcscmp) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77da0 (libc.so.6:mempcpy) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77bd0 (libc.so.6:bcmp) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c76f50 (libc.so.6:strncmp) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c76990 (libc.so.6:strcmp) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77d00 (libc.so.6:memset) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c912f0 (libc.so.6:wcschr) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c76eb0 (libc.so.6:strnlen) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c76a70 (libc.so.6:strcspn) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77fc0 (libc.so.6:strncasecmp) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c76a10 (libc.so.6:strcpy) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c78110 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c92a40 (libc.so.6:wcsnlen) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c91370 (libc.so.6:wcscpy) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77060 (libc.so.6:strpbrk) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c76940 (libc.so.6:index) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c76e70 (libc.so.6:strlen) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c7d750 (libc.so.6:memrchr) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c78010 (libc.so.6:strcasecmp_l) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77b90 (libc.so.6:memchr) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c91440 (libc.so.6:wcslen) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77320 (libc.so.6:strspn) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77f10 (libc.so.6:stpncpy) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c77eb0 (libc.so.6:stpcpy) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c79350 (libc.so.6:strchrnul) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c78060 (libc.so.6:strncasecmp_l) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4d49000 (libc.so.6:__strrchr_avx2) redirected to 0x483c7b0 (rindex)
---23476-- REDIR: 0x4c72e00 (libc.so.6:malloc) redirected to 0x4839710 (malloc)
---23476-- REDIR: 0x4d491d0 (libc.so.6:__strlen_avx2) redirected to 0x483cc80 (strlen)
---23476-- REDIR: 0x4d457c0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x483fe80 (bcmp)
---23476-- REDIR: 0x4d446d0 (libc.so.6:__strcmp_avx2) redirected to 0x483db90 (strcmp)
---23476-- REDIR: 0x4d4c1c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x48412f0 (mempcpy)
---23476-- REDIR: 0x4c777d0 (libc.so.6:__GI_strstr) redirected to 0x48418c0 (__strstr_sse2)
---23476-- REDIR: 0x4942b20 (libstdc++.so.6:operator new[](unsigned long)) redirected to 0x483a4a0 (operator new[](unsigned long))
---23476-- REDIR: 0x4d45030 (libc.so.6:__memchr_avx2) redirected to 0x483dd10 (memchr)
---23476-- REDIR: 0x4d4c1e0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4840690 (memmove)
---23476-- REDIR: 0x4c77ab0 (libc.so.6:strstr) redirected to 0x482f1c0 (_vgnU_ifunc_wrapper)
---23476-- REDIR: 0x4c8ff90 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4841850 (strstr)
---23476-- REDIR: 0x4d4a710 (libc.so.6:__strcpy_avx2) redirected to 0x483cdd0 (strcpy)
---23476-- REDIR: 0x4940cc0 (libstdc++.so.6:operator delete[](void*)) redirected to 0x483b520 (operator delete[](void*))
---23476-- REDIR: 0x4c73440 (libc.so.6:free) redirected to 0x483a940 (free)
---23476-- REDIR: 0x4d4aaa0 (libc.so.6:__strncpy_avx2) redirected to 0x483cf70 (strncpy)
-==23476== Conditional jump or move depends on uninitialised value(s)
-==23476==    at 0x10B680: getDay(char**, int, char const*) (todo.cpp:67)
-==23476==    by 0x10AF28: main (main.cpp:42)
-==23476==  Uninitialised value was created by a heap allocation
-==23476==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==23476==    by 0x10B4D0: getDates(char*) (todo.cpp:22)
-==23476==    by 0x10AE0F: main (main.cpp:34)
-==23476== 
-==23476== Conditional jump or move depends on uninitialised value(s)
-==23476==    at 0x10B680: getDay(char**, int, char const*) (todo.cpp:67)
-==23476==    by 0x10AF75: main (main.cpp:43)
-==23476==  Uninitialised value was created by a heap allocation
-==23476==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==23476==    by 0x10B4D0: getDates(char*) (todo.cpp:22)
-==23476==    by 0x10AE0F: main (main.cpp:34)
-==23476== 
-==23476== Conditional jump or move depends on uninitialised value(s)
-==23476==    at 0x10B680: getDay(char**, int, char const*) (todo.cpp:67)
-==23476==    by 0x10AFC2: main (main.cpp:44)
-==23476==  Uninitialised value was created by a heap allocation
-==23476==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==23476==    by 0x10B4D0: getDates(char*) (todo.cpp:22)
-==23476==    by 0x10AE0F: main (main.cpp:34)
-==23476== 
-==23476== Conditional jump or move depends on uninitialised value(s)
-==23476==    at 0x10B680: getDay(char**, int, char const*) (todo.cpp:67)
-==23476==    by 0x10B00F: main (main.cpp:45)
-==23476==  Uninitialised value was created by a heap allocation
-==23476==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==23476==    by 0x10B4D0: getDates(char*) (todo.cpp:22)
-==23476==    by 0x10AE0F: main (main.cpp:34)
-==23476== 
---23476-- REDIR: 0x4942ac0 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x4839d80 (operator new(unsigned long))
---23476-- REDIR: 0x4d4c660 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4840580 (memset)
---23476-- REDIR: 0x4940ca0 (libstdc++.so.6:operator delete(void*, unsigned long)) redirected to 0x483b020 (operator delete(void*, unsigned long))
-==23476== 
-==23476== HEAP SUMMARY:
-==23476==     in use at exit: 384 bytes in 24 blocks
-==23476==   total heap usage: 145 allocs, 121 frees, 213,405 bytes allocated
-==23476== 
-==23476== Searching for pointers to 24 not-freed blocks
-==23476== Checked 107,984 bytes
-==23476== 
-==23476== 32 bytes in 2 blocks are indirectly lost in loss record 1 of 3
-==23476==    at 0x4839DEF: operator new(unsigned long) (vg_replace_malloc.c:344)
-==23476==    by 0x10BA05: getPlaces(char**, int) (todo.cpp:140)
-==23476==    by 0x10B0A4: main (main.cpp:48)
-==23476== 
-==23476== 304 bytes in 19 blocks are indirectly lost in loss record 2 of 3
-==23476==    at 0x4839DEF: operator new(unsigned long) (vg_replace_malloc.c:344)
-==23476==    by 0x10B94A: getPlaces(char**, int) (todo.cpp:123)
-==23476==    by 0x10B0A4: main (main.cpp:48)
-==23476== 
-==23476== 384 (48 direct, 336 indirect) bytes in 3 blocks are definitely lost in loss record 3 of 3
-==23476==    at 0x4839DEF: operator new(unsigned long) (vg_replace_malloc.c:344)
-==23476==    by 0x10B89C: getPlaces(char**, int) (todo.cpp:112)
-==23476==    by 0x10B0A4: main (main.cpp:48)
-==23476== 
-==23476== LEAK SUMMARY:
-==23476==    definitely lost: 48 bytes in 3 blocks
-==23476==    indirectly lost: 336 bytes in 21 blocks
-==23476==      possibly lost: 0 bytes in 0 blocks
-==23476==    still reachable: 0 bytes in 0 blocks
-==23476==         suppressed: 0 bytes in 0 blocks
-==23476== 
-==23476== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 0 from 0)
-==23476== 
-==23476== 1 errors in context 1 of 5:
-==23476== Conditional jump or move depends on uninitialised value(s)
-==23476==    at 0x10B680: getDay(char**, int, char const*) (todo.cpp:67)
-==23476==    by 0x10B00F: main (main.cpp:45)
-==23476==  Uninitialised value was created by a heap allocation
-==23476==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==23476==    by 0x10B4D0: getDates(char*) (todo.cpp:22)
-==23476==    by 0x10AE0F: main (main.cpp:34)
-==23476== 
-==23476== 
-==23476== 1 errors in context 2 of 5:
-==23476== Conditional jump or move depends on uninitialised value(s)
-==23476==    at 0x10B680: getDay(char**, int, char const*) (todo.cpp:67)
-==23476==    by 0x10AFC2: main (main.cpp:44)
-==23476==  Uninitialised value was created by a heap allocation
-==23476==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==23476==    by 0x10B4D0: getDates(char*) (todo.cpp:22)
-==23476==    by 0x10AE0F: main (main.cpp:34)
-==23476== 
-==23476== 
-==23476== 1 errors in context 3 of 5:
-==23476== Conditional jump or move depends on uninitialised value(s)
-==23476==    at 0x10B680: getDay(char**, int, char const*) (todo.cpp:67)
-==23476==    by 0x10AF75: main (main.cpp:43)
-==23476==  Uninitialised value was created by a heap allocation
-==23476==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==23476==    by 0x10B4D0: getDates(char*) (todo.cpp:22)
-==23476==    by 0x10AE0F: main (main.cpp:34)
-==23476== 
-==23476== 
-==23476== 1 errors in context 4 of 5:
-==23476== Conditional jump or move depends on uninitialised value(s)
-==23476==    at 0x10B680: getDay(char**, int, char const*) (todo.cpp:67)
-==23476==    by 0x10AF28: main (main.cpp:42)
-==23476==  Uninitialised value was created by a heap allocation
-==23476==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==23476==    by 0x10B4D0: getDates(char*) (todo.cpp:22)
-==23476==    by 0x10AE0F: main (main.cpp:34)
-==23476== 
-==23476== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 0 from 0)
+==26943== Memcheck, a memory error detector
+==26943== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==26943== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==26943== Command: ./a.out
+==26943== Parent PID: 26932
+==26943== 
+--26943-- 
+--26943-- Valgrind options:
+--26943--    --leak-check=full
+--26943--    --show-leak-kinds=all
+--26943--    --track-origins=yes
+--26943--    --verbose
+--26943--    --log-file=valgrind-out.txt
+--26943-- Contents of /proc/version:
+--26943--   Linux version 5.4.0-26-generic (buildd@lcy01-amd64-029) (gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2)) #30-Ubuntu SMP Mon Apr 20 16:58:30 UTC 2020
+--26943-- 
+--26943-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--26943-- Page sizes: currently 4096, max supported 4096
+--26943-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--26943-- Reading syms from /home/eric/Documents/VScode/comp2011/comp2011-assignment3/a.out
+--26943-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--26943--   Considering /usr/lib/x86_64-linux-gnu/ld-2.31.so ..
+--26943--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
+--26943--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
+--26943--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
+--26943--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
+--26943--   .. CRC is valid
+--26943-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--26943--    object doesn't have a symbol table
+--26943--    object doesn't have a dynamic symbol table
+--26943-- Scheduler: using generic scheduler lock implementation.
+--26943-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==26943== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-26943-by-eric-on-???
+==26943== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-26943-by-eric-on-???
+==26943== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-26943-by-eric-on-???
+==26943== 
+==26943== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==26943== don't want to do, unless you know exactly what you're doing,
+==26943== or are doing some strange experiment):
+==26943==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=26943 ...command...
+==26943== 
+==26943== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==26943==   /path/to/gdb ./a.out
+==26943== and then give GDB the following command
+==26943==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=26943
+==26943== --pid is optional if only one valgrind process is running
+==26943== 
+--26943-- REDIR: 0x4022d80 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--26943-- REDIR: 0x4022b50 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--26943-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--26943--    object doesn't have a symbol table
+--26943-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--26943--    object doesn't have a symbol table
+==26943== WARNING: new redirection conflicts with existing -- ignoring it
+--26943--     old: 0x04022d80 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--26943--     new: 0x04022d80 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--26943-- REDIR: 0x401f560 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--26943-- REDIR: 0x40232e0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--26943-- Reading syms from /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+--26943--    object doesn't have a symbol table
+--26943-- Reading syms from /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+--26943--    object doesn't have a symbol table
+--26943-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--26943--   Considering /usr/lib/x86_64-linux-gnu/libc-2.31.so ..
+--26943--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
+--26943--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
+--26943--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
+--26943--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
+--26943--   .. CRC is valid
+--26943-- Reading syms from /usr/lib/x86_64-linux-gnu/libm-2.31.so
+--26943--   Considering /usr/lib/x86_64-linux-gnu/libm-2.31.so ..
+--26943--   .. CRC mismatch (computed 327d785f wanted 751f5509)
+--26943--   Considering /lib/x86_64-linux-gnu/libm-2.31.so ..
+--26943--   .. CRC mismatch (computed 327d785f wanted 751f5509)
+--26943--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libm-2.31.so ..
+--26943--   .. CRC is valid
+--26943-- REDIR: 0x4aff600 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe900 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff930 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe220 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe960 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b00dd0 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b1be60 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b1b9a0 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff760 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff590 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe890 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe2d0 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff6c0 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b1b960 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe7f0 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe3b0 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff980 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe350 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4affad0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b1d0d0 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b1b9e0 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe9a0 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe280 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afe7b0 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b07d20 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff9d0 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff550 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b1bab0 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4afec60 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff8d0 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff870 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4b00e10 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4affa20 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4aff470 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--26943-- REDIR: 0x4be7300 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--26943-- REDIR: 0x4af9260 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--26943-- REDIR: 0x4be74d0 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
+--26943-- REDIR: 0x4be3ac0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48421e0 (bcmp)
+--26943-- REDIR: 0x4be29d0 (libc.so.6:__strcmp_avx2) redirected to 0x483fed0 (strcmp)
+--26943-- REDIR: 0x4bea4c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+--26943-- REDIR: 0x4aff120 (libc.so.6:__GI_strstr) redirected to 0x4843ca0 (__strstr_sse2)
+--26943-- REDIR: 0x490ac70 (libstdc++.so.6:operator new[](unsigned long)) redirected to 0x483c510 (operator new[](unsigned long))
+--26943-- REDIR: 0x4be3330 (libc.so.6:__memchr_avx2) redirected to 0x4840050 (memchr)
+--26943-- REDIR: 0x4bea4e0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x48429f0 (memmove)
+--26943-- REDIR: 0x4b1a560 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4843c20 (strstr)
+--26943-- REDIR: 0x4be8a10 (libc.so.6:__strcpy_avx2) redirected to 0x483f090 (strcpy)
+--26943-- REDIR: 0x4be8da0 (libc.so.6:__strncpy_avx2) redirected to 0x483f230 (strncpy)
+--26943-- REDIR: 0x4be7990 (libc.so.6:__strcat_avx2) redirected to 0x483ec20 (strcat)
+--26943-- REDIR: 0x4908e90 (libstdc++.so.6:operator delete[](void*)) redirected to 0x483d6e0 (operator delete[](void*))
+--26943-- REDIR: 0x4af9850 (libc.so.6:free) redirected to 0x483c9d0 (free)
+==26943== Conditional jump or move depends on uninitialised value(s)
+==26943==    at 0x10B893: getDay(char**, int, char const*) (todo.cpp:67)
+==26943==    by 0x10B0F0: main (main.cpp:41)
+==26943==  Uninitialised value was created by a heap allocation
+==26943==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==26943==    by 0x10B6DF: getDates(char*) (todo.cpp:22)
+==26943==    by 0x10B024: main (main.cpp:34)
+==26943== 
+==26943== Conditional jump or move depends on uninitialised value(s)
+==26943==    at 0x10B893: getDay(char**, int, char const*) (todo.cpp:67)
+==26943==    by 0x10B224: main (main.cpp:45)
+==26943==  Uninitialised value was created by a heap allocation
+==26943==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==26943==    by 0x10B6DF: getDates(char*) (todo.cpp:22)
+==26943==    by 0x10B024: main (main.cpp:34)
+==26943== 
+--26943-- REDIR: 0x490ac10 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x483bdf0 (operator new(unsigned long))
+--26943-- REDIR: 0x4bea960 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x48428e0 (memset)
+--26943-- REDIR: 0x4908e70 (libstdc++.so.6:operator delete(void*, unsigned long)) redirected to 0x483d160 (operator delete(void*, unsigned long))
+==26943== 
+==26943== HEAP SUMMARY:
+==26943==     in use at exit: 0 bytes in 0 blocks
+==26943==   total heap usage: 32,403 allocs, 32,403 frees, 490,203 bytes allocated
+==26943== 
+==26943== All heap blocks were freed -- no leaks are possible
+==26943== 
+==26943== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==26943== 
+==26943== 1 errors in context 1 of 2:
+==26943== Conditional jump or move depends on uninitialised value(s)
+==26943==    at 0x10B893: getDay(char**, int, char const*) (todo.cpp:67)
+==26943==    by 0x10B224: main (main.cpp:45)
+==26943==  Uninitialised value was created by a heap allocation
+==26943==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==26943==    by 0x10B6DF: getDates(char*) (todo.cpp:22)
+==26943==    by 0x10B024: main (main.cpp:34)
+==26943== 
+==26943== 
+==26943== 1 errors in context 2 of 2:
+==26943== Conditional jump or move depends on uninitialised value(s)
+==26943==    at 0x10B893: getDay(char**, int, char const*) (todo.cpp:67)
+==26943==    by 0x10B0F0: main (main.cpp:41)
+==26943==  Uninitialised value was created by a heap allocation
+==26943==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==26943==    by 0x10B6DF: getDates(char*) (todo.cpp:22)
+==26943==    by 0x10B024: main (main.cpp:34)
+==26943== 
+==26943== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
