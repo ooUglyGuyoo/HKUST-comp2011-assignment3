@@ -353,6 +353,7 @@ void changeToNDayGrowth(Place* places, int placeCount, int n){
         while (tail != nullptr)
         {
             head->number = tail->number;
+            head->day = tail->day;
             head = head->next = head + 1;
             tail = tail->next;
         }
@@ -376,6 +377,7 @@ void changeToNDayGrowth(Place* places, int placeCount, int n){
             else if (tail->number - head->number != 0 && check == true)
             {
                 tail->number = head->number - tail->number;
+                tail->day = head->day;
                 tail = tail->next;
                 head = head->next;
                 countail += 1;
