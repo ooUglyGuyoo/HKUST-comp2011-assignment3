@@ -90,6 +90,7 @@ Place* getPlaces(char** csvLines, int csvLineCount)
             if (currentLine[i] == ',')
             {
                 commaCount += 1;
+                char* substr = substring(currentLine, start, i-1);
                 if (commaCount == 1)
                 {
                     if (start == i)
@@ -98,44 +99,51 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                     }
                     else
                     {
-                        places[placeCount].province = substring(currentLine, start, i-1);
+                        places[placeCount].province = substr;
                     }
                 }
                 else if (commaCount == 2)
                 {
-                    places[placeCount].region = substring(currentLine, start, i-1);
+                    places[placeCount].region = substr;
                 }
-                else if (commaCount >= 5 && atoi(substring(currentLine, start, i-1)) != 0 && linecount == 0)
+                else if (commaCount >= 5 && atoi(substr) != 0 && linecount == 0)
                 {
                     places[placeCount].headNode = datastorage;
                     datastorage->day = commaCount - 4;
-                    datastorage->number = atoi(substring(currentLine, start, i-1));
+                    datastorage->number = atoi(substr);
                     tail->next = datastorage;
                     tail = datastorage;
                     dataCount += 1;
                     linecount += 1;
+                    delete [] substr;
                 }
                 else if (commaCount >= 5 && linecount != 0)
                 {
                     datastorage->day = commaCount - 4;
-                    datastorage->number = atoi(substring(currentLine, start, i-1));
+                    datastorage->number = atoi(substr);
                     tail->next = datastorage;
                     tail = datastorage;
                     dataCount += 1;
                     linecount += 1;
+                    delete [] substr;
                 }
-                else{}
+                else
+                {
+                    delete[] substr;
+                }
                 start = i+1;
             }
             if ( !currentLine[i+1] )
             {
+                char* substr = substring(currentLine, start, i);
                 datastorage->day = commaCount - 3;
-                datastorage->number = atoi(substring(currentLine, start, i));
+                datastorage->number = atoi(substr);
                 tail->next = datastorage;
                 tail = datastorage;
                 dataCount += 1;
                 linecount += 1;
                 tail->next = nullptr;
+                delete [] substr;
             }
         }
         placeCount += 1;
