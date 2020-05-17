@@ -1,173 +1,283 @@
-==29763== Memcheck, a memory error detector
-==29763== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==29763== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
-==29763== Command: ./a.out
-==29763== Parent PID: 29752
-==29763== 
---29763-- 
---29763-- Valgrind options:
---29763--    --leak-check=full
---29763--    --show-leak-kinds=all
---29763--    --track-origins=yes
---29763--    --verbose
---29763--    --log-file=valgrind-out.txt
---29763-- Contents of /proc/version:
---29763--   Linux version 5.4.0-26-generic (buildd@lcy01-amd64-029) (gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2)) #30-Ubuntu SMP Mon Apr 20 16:58:30 UTC 2020
---29763-- 
---29763-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
---29763-- Page sizes: currently 4096, max supported 4096
---29763-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
---29763-- Reading syms from /home/eric/Documents/VScode/comp2011/comp2011-assignment3/a.out
---29763-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
---29763--   Considering /usr/lib/x86_64-linux-gnu/ld-2.31.so ..
---29763--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
---29763--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
---29763--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
---29763--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
---29763--   .. CRC is valid
---29763-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
---29763--    object doesn't have a symbol table
---29763--    object doesn't have a dynamic symbol table
---29763-- Scheduler: using generic scheduler lock implementation.
---29763-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
-==29763== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-29763-by-eric-on-???
-==29763== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-29763-by-eric-on-???
-==29763== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-29763-by-eric-on-???
-==29763== 
-==29763== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==29763== don't want to do, unless you know exactly what you're doing,
-==29763== or are doing some strange experiment):
-==29763==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=29763 ...command...
-==29763== 
-==29763== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==29763==   /path/to/gdb ./a.out
-==29763== and then give GDB the following command
-==29763==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=29763
-==29763== --pid is optional if only one valgrind process is running
-==29763== 
---29763-- REDIR: 0x4022d80 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
---29763-- REDIR: 0x4022b50 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
---29763-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
---29763--    object doesn't have a symbol table
---29763-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
---29763--    object doesn't have a symbol table
-==29763== WARNING: new redirection conflicts with existing -- ignoring it
---29763--     old: 0x04022d80 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
---29763--     new: 0x04022d80 (strlen              ) R-> (2007.0) 0x0483f060 strlen
---29763-- REDIR: 0x401f560 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
---29763-- REDIR: 0x40232e0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
---29763-- Reading syms from /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
---29763--    object doesn't have a symbol table
---29763-- Reading syms from /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
---29763--    object doesn't have a symbol table
---29763-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
---29763--   Considering /usr/lib/x86_64-linux-gnu/libc-2.31.so ..
---29763--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
---29763--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
---29763--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
---29763--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
---29763--   .. CRC is valid
---29763-- Reading syms from /usr/lib/x86_64-linux-gnu/libm-2.31.so
---29763--   Considering /usr/lib/x86_64-linux-gnu/libm-2.31.so ..
---29763--   .. CRC mismatch (computed 327d785f wanted 751f5509)
---29763--   Considering /lib/x86_64-linux-gnu/libm-2.31.so ..
---29763--   .. CRC mismatch (computed 327d785f wanted 751f5509)
---29763--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libm-2.31.so ..
---29763--   .. CRC is valid
---29763-- REDIR: 0x4aff600 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe900 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff930 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe220 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe960 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b00dd0 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b1be60 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b1b9a0 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff760 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff590 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe890 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe2d0 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff6c0 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b1b960 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe7f0 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe3b0 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff980 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe350 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4affad0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b1d0d0 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b1b9e0 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe9a0 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe280 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afe7b0 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b07d20 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff9d0 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff550 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b1bab0 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4afec60 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff8d0 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff870 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4b00e10 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4affa20 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4aff470 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---29763-- REDIR: 0x4be7300 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
---29763-- REDIR: 0x4af9260 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
---29763-- REDIR: 0x4be74d0 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
---29763-- REDIR: 0x4be3ac0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48421e0 (bcmp)
---29763-- REDIR: 0x4be29d0 (libc.so.6:__strcmp_avx2) redirected to 0x483fed0 (strcmp)
---29763-- REDIR: 0x4bea4c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
---29763-- REDIR: 0x4aff120 (libc.so.6:__GI_strstr) redirected to 0x4843ca0 (__strstr_sse2)
---29763-- REDIR: 0x490ac70 (libstdc++.so.6:operator new[](unsigned long)) redirected to 0x483c510 (operator new[](unsigned long))
---29763-- REDIR: 0x4be3330 (libc.so.6:__memchr_avx2) redirected to 0x4840050 (memchr)
---29763-- REDIR: 0x4bea4e0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x48429f0 (memmove)
---29763-- REDIR: 0x4b1a560 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4843c20 (strstr)
---29763-- REDIR: 0x4be8a10 (libc.so.6:__strcpy_avx2) redirected to 0x483f090 (strcpy)
---29763-- REDIR: 0x4be8da0 (libc.so.6:__strncpy_avx2) redirected to 0x483f230 (strncpy)
---29763-- REDIR: 0x4be7990 (libc.so.6:__strcat_avx2) redirected to 0x483ec20 (strcat)
---29763-- REDIR: 0x4908e90 (libstdc++.so.6:operator delete[](void*)) redirected to 0x483d6e0 (operator delete[](void*))
---29763-- REDIR: 0x4af9850 (libc.so.6:free) redirected to 0x483c9d0 (free)
-==29763== Conditional jump or move depends on uninitialised value(s)
-==29763==    at 0x10B837: getDay(char**, int, char const*) (todo.cpp:67)
-==29763==    by 0x10B0F0: main (main.cpp:41)
-==29763==  Uninitialised value was created by a heap allocation
-==29763==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==29763==    by 0x10B683: getDates(char*) (todo.cpp:22)
-==29763==    by 0x10B024: main (main.cpp:34)
-==29763== 
-==29763== Conditional jump or move depends on uninitialised value(s)
-==29763==    at 0x10B837: getDay(char**, int, char const*) (todo.cpp:67)
-==29763==    by 0x10B224: main (main.cpp:45)
-==29763==  Uninitialised value was created by a heap allocation
-==29763==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==29763==    by 0x10B683: getDates(char*) (todo.cpp:22)
-==29763==    by 0x10B024: main (main.cpp:34)
-==29763== 
---29763-- REDIR: 0x490ac10 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x483bdf0 (operator new(unsigned long))
---29763-- REDIR: 0x4908e70 (libstdc++.so.6:operator delete(void*, unsigned long)) redirected to 0x483d160 (operator delete(void*, unsigned long))
-==29763== 
-==29763== HEAP SUMMARY:
-==29763==     in use at exit: 0 bytes in 0 blocks
-==29763==   total heap usage: 32,402 allocs, 32,402 frees, 487,059 bytes allocated
-==29763== 
-==29763== All heap blocks were freed -- no leaks are possible
-==29763== 
-==29763== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
-==29763== 
-==29763== 1 errors in context 1 of 2:
-==29763== Conditional jump or move depends on uninitialised value(s)
-==29763==    at 0x10B837: getDay(char**, int, char const*) (todo.cpp:67)
-==29763==    by 0x10B224: main (main.cpp:45)
-==29763==  Uninitialised value was created by a heap allocation
-==29763==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==29763==    by 0x10B683: getDates(char*) (todo.cpp:22)
-==29763==    by 0x10B024: main (main.cpp:34)
-==29763== 
-==29763== 
-==29763== 1 errors in context 2 of 2:
-==29763== Conditional jump or move depends on uninitialised value(s)
-==29763==    at 0x10B837: getDay(char**, int, char const*) (todo.cpp:67)
-==29763==    by 0x10B0F0: main (main.cpp:41)
-==29763==  Uninitialised value was created by a heap allocation
-==29763==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==29763==    by 0x10B683: getDates(char*) (todo.cpp:22)
-==29763==    by 0x10B024: main (main.cpp:34)
-==29763== 
-==29763== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==30823== Memcheck, a memory error detector
+==30823== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==30823== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==30823== Command: ./a.out
+==30823== Parent PID: 30812
+==30823== 
+--30823-- 
+--30823-- Valgrind options:
+--30823--    --leak-check=full
+--30823--    --show-leak-kinds=all
+--30823--    --track-origins=yes
+--30823--    --verbose
+--30823--    --log-file=valgrind-out.txt
+--30823-- Contents of /proc/version:
+--30823--   Linux version 5.4.0-26-generic (buildd@lcy01-amd64-029) (gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2)) #30-Ubuntu SMP Mon Apr 20 16:58:30 UTC 2020
+--30823-- 
+--30823-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--30823-- Page sizes: currently 4096, max supported 4096
+--30823-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--30823-- Reading syms from /home/eric/Documents/VScode/comp2011/comp2011-assignment3/a.out
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--30823--   Considering /usr/lib/x86_64-linux-gnu/ld-2.31.so ..
+--30823--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
+--30823--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
+--30823--   .. CRC mismatch (computed 387b17ea wanted d28cf5ef)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--30823--    object doesn't have a symbol table
+--30823--    object doesn't have a dynamic symbol table
+--30823-- Scheduler: using generic scheduler lock implementation.
+--30823-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==30823== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-30823-by-eric-on-???
+==30823== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-30823-by-eric-on-???
+==30823== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-30823-by-eric-on-???
+==30823== 
+==30823== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==30823== don't want to do, unless you know exactly what you're doing,
+==30823== or are doing some strange experiment):
+==30823==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=30823 ...command...
+==30823== 
+==30823== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==30823==   /path/to/gdb ./a.out
+==30823== and then give GDB the following command
+==30823==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=30823
+==30823== --pid is optional if only one valgrind process is running
+==30823== 
+--30823-- REDIR: 0x4022d80 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--30823-- REDIR: 0x4022b50 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--30823--    object doesn't have a symbol table
+==30823== WARNING: new redirection conflicts with existing -- ignoring it
+--30823--     old: 0x04022d80 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--30823--     new: 0x04022d80 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--30823-- REDIR: 0x401f560 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--30823-- REDIR: 0x40232e0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+--30823--    object doesn't have a symbol table
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libc-2.31.so ..
+--30823--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
+--30823--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
+--30823--   .. CRC mismatch (computed a6f43087 wanted 6555436e)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
+--30823--   .. CRC is valid
+--30823-- Reading syms from /usr/lib/x86_64-linux-gnu/libm-2.31.so
+--30823--   Considering /usr/lib/x86_64-linux-gnu/libm-2.31.so ..
+--30823--   .. CRC mismatch (computed 327d785f wanted 751f5509)
+--30823--   Considering /lib/x86_64-linux-gnu/libm-2.31.so ..
+--30823--   .. CRC mismatch (computed 327d785f wanted 751f5509)
+--30823--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libm-2.31.so ..
+--30823--   .. CRC is valid
+--30823-- REDIR: 0x4aff600 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe900 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff930 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe220 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe960 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b00dd0 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b1be60 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b1b9a0 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff760 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff590 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe890 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe2d0 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff6c0 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b1b960 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe7f0 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe3b0 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff980 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe350 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4affad0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b1d0d0 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b1b9e0 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe9a0 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe280 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afe7b0 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b07d20 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff9d0 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff550 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b1bab0 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4afec60 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff8d0 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff870 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4b00e10 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4affa20 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4aff470 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--30823-- REDIR: 0x4be7300 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--30823-- REDIR: 0x4af9260 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--30823-- REDIR: 0x4be74d0 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
+--30823-- REDIR: 0x4be3ac0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48421e0 (bcmp)
+--30823-- REDIR: 0x4be29d0 (libc.so.6:__strcmp_avx2) redirected to 0x483fed0 (strcmp)
+--30823-- REDIR: 0x4bea4c0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+--30823-- REDIR: 0x4aff120 (libc.so.6:__GI_strstr) redirected to 0x4843ca0 (__strstr_sse2)
+--30823-- REDIR: 0x490ac70 (libstdc++.so.6:operator new[](unsigned long)) redirected to 0x483c510 (operator new[](unsigned long))
+--30823-- REDIR: 0x4be3330 (libc.so.6:__memchr_avx2) redirected to 0x4840050 (memchr)
+--30823-- REDIR: 0x4bea4e0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x48429f0 (memmove)
+--30823-- REDIR: 0x4b1a560 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4843c20 (strstr)
+--30823-- REDIR: 0x4be8a10 (libc.so.6:__strcpy_avx2) redirected to 0x483f090 (strcpy)
+--30823-- REDIR: 0x4be8da0 (libc.so.6:__strncpy_avx2) redirected to 0x483f230 (strncpy)
+--30823-- REDIR: 0x4be7990 (libc.so.6:__strcat_avx2) redirected to 0x483ec20 (strcat)
+--30823-- REDIR: 0x4908e90 (libstdc++.so.6:operator delete[](void*)) redirected to 0x483d6e0 (operator delete[](void*))
+--30823-- REDIR: 0x4af9850 (libc.so.6:free) redirected to 0x483c9d0 (free)
+==30823== Conditional jump or move depends on uninitialised value(s)
+==30823==    at 0x10B865: getDay(char**, int, char const*) (todo.cpp:67)
+==30823==    by 0x10B0F0: main (main.cpp:41)
+==30823==  Uninitialised value was created by a heap allocation
+==30823==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10B6B1: getDates(char*) (todo.cpp:22)
+==30823==    by 0x10B024: main (main.cpp:34)
+==30823== 
+==30823== Conditional jump or move depends on uninitialised value(s)
+==30823==    at 0x10B865: getDay(char**, int, char const*) (todo.cpp:67)
+==30823==    by 0x10B224: main (main.cpp:45)
+==30823==  Uninitialised value was created by a heap allocation
+==30823==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10B6B1: getDates(char*) (todo.cpp:22)
+==30823==    by 0x10B024: main (main.cpp:34)
+==30823== 
+--30823-- REDIR: 0x490ac10 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x483bdf0 (operator new(unsigned long))
+--30823-- REDIR: 0x4908e70 (libstdc++.so.6:operator delete(void*, unsigned long)) redirected to 0x483d160 (operator delete(void*, unsigned long))
+==30823== Invalid read of size 4
+==30823==    at 0x10D346: writeCSV(char const*, Place*, int) (todo.cpp:421)
+==30823==    by 0x10B4A4: main (main.cpp:69)
+==30823==  Address 0x4ecb204 is 4 bytes inside a block of size 16 free'd
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D1CB: changeToNDayGrowth(Place*, int, int) (todo.cpp:399)
+==30823==    by 0x10B43E: main (main.cpp:64)
+==30823==  Block was alloc'd at
+==30823==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10BB33: getPlaces(char**, int) (todo.cpp:123)
+==30823==    by 0x10B2B9: main (main.cpp:48)
+==30823== 
+==30823== Invalid read of size 8
+==30823==    at 0x10D35A: writeCSV(char const*, Place*, int) (todo.cpp:422)
+==30823==    by 0x10B4A4: main (main.cpp:69)
+==30823==  Address 0x4ecb208 is 8 bytes inside a block of size 16 free'd
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D1CB: changeToNDayGrowth(Place*, int, int) (todo.cpp:399)
+==30823==    by 0x10B43E: main (main.cpp:64)
+==30823==  Block was alloc'd at
+==30823==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10BB33: getPlaces(char**, int) (todo.cpp:123)
+==30823==    by 0x10B2B9: main (main.cpp:48)
+==30823== 
+==30823== Invalid read of size 8
+==30823==    at 0x10D539: deallocateLinkedList(Node*) (todo.cpp:448)
+==30823==    by 0x10D5B2: deallocatePlaces(Place*, int) (todo.cpp:457)
+==30823==    by 0x10B527: main (main.cpp:78)
+==30823==  Address 0x4ecb208 is 8 bytes inside a block of size 16 free'd
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D1CB: changeToNDayGrowth(Place*, int, int) (todo.cpp:399)
+==30823==    by 0x10B43E: main (main.cpp:64)
+==30823==  Block was alloc'd at
+==30823==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10BB33: getPlaces(char**, int) (todo.cpp:123)
+==30823==    by 0x10B2B9: main (main.cpp:48)
+==30823== 
+==30823== Invalid free() / delete / delete[] / realloc()
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D556: deallocateLinkedList(Node*) (todo.cpp:449)
+==30823==    by 0x10D5B2: deallocatePlaces(Place*, int) (todo.cpp:457)
+==30823==    by 0x10B527: main (main.cpp:78)
+==30823==  Address 0x4ecb200 is 0 bytes inside a block of size 16 free'd
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D1CB: changeToNDayGrowth(Place*, int, int) (todo.cpp:399)
+==30823==    by 0x10B43E: main (main.cpp:64)
+==30823==  Block was alloc'd at
+==30823==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10BB33: getPlaces(char**, int) (todo.cpp:123)
+==30823==    by 0x10B2B9: main (main.cpp:48)
+==30823== 
+==30823== 
+==30823== HEAP SUMMARY:
+==30823==     in use at exit: 0 bytes in 0 blocks
+==30823==   total heap usage: 32,534 allocs, 32,535 frees, 2,584,107 bytes allocated
+==30823== 
+==30823== All heap blocks were freed -- no leaks are possible
+==30823== 
+==30823== ERROR SUMMARY: 6 errors from 6 contexts (suppressed: 0 from 0)
+==30823== 
+==30823== 1 errors in context 1 of 6:
+==30823== Invalid free() / delete / delete[] / realloc()
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D556: deallocateLinkedList(Node*) (todo.cpp:449)
+==30823==    by 0x10D5B2: deallocatePlaces(Place*, int) (todo.cpp:457)
+==30823==    by 0x10B527: main (main.cpp:78)
+==30823==  Address 0x4ecb200 is 0 bytes inside a block of size 16 free'd
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D1CB: changeToNDayGrowth(Place*, int, int) (todo.cpp:399)
+==30823==    by 0x10B43E: main (main.cpp:64)
+==30823==  Block was alloc'd at
+==30823==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10BB33: getPlaces(char**, int) (todo.cpp:123)
+==30823==    by 0x10B2B9: main (main.cpp:48)
+==30823== 
+==30823== 
+==30823== 1 errors in context 2 of 6:
+==30823== Invalid read of size 8
+==30823==    at 0x10D539: deallocateLinkedList(Node*) (todo.cpp:448)
+==30823==    by 0x10D5B2: deallocatePlaces(Place*, int) (todo.cpp:457)
+==30823==    by 0x10B527: main (main.cpp:78)
+==30823==  Address 0x4ecb208 is 8 bytes inside a block of size 16 free'd
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D1CB: changeToNDayGrowth(Place*, int, int) (todo.cpp:399)
+==30823==    by 0x10B43E: main (main.cpp:64)
+==30823==  Block was alloc'd at
+==30823==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10BB33: getPlaces(char**, int) (todo.cpp:123)
+==30823==    by 0x10B2B9: main (main.cpp:48)
+==30823== 
+==30823== 
+==30823== 1 errors in context 3 of 6:
+==30823== Invalid read of size 8
+==30823==    at 0x10D35A: writeCSV(char const*, Place*, int) (todo.cpp:422)
+==30823==    by 0x10B4A4: main (main.cpp:69)
+==30823==  Address 0x4ecb208 is 8 bytes inside a block of size 16 free'd
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D1CB: changeToNDayGrowth(Place*, int, int) (todo.cpp:399)
+==30823==    by 0x10B43E: main (main.cpp:64)
+==30823==  Block was alloc'd at
+==30823==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10BB33: getPlaces(char**, int) (todo.cpp:123)
+==30823==    by 0x10B2B9: main (main.cpp:48)
+==30823== 
+==30823== 
+==30823== 1 errors in context 4 of 6:
+==30823== Invalid read of size 4
+==30823==    at 0x10D346: writeCSV(char const*, Place*, int) (todo.cpp:421)
+==30823==    by 0x10B4A4: main (main.cpp:69)
+==30823==  Address 0x4ecb204 is 4 bytes inside a block of size 16 free'd
+==30823==    at 0x483D1CF: operator delete(void*, unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10D1CB: changeToNDayGrowth(Place*, int, int) (todo.cpp:399)
+==30823==    by 0x10B43E: main (main.cpp:64)
+==30823==  Block was alloc'd at
+==30823==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10BB33: getPlaces(char**, int) (todo.cpp:123)
+==30823==    by 0x10B2B9: main (main.cpp:48)
+==30823== 
+==30823== 
+==30823== 1 errors in context 5 of 6:
+==30823== Conditional jump or move depends on uninitialised value(s)
+==30823==    at 0x10B865: getDay(char**, int, char const*) (todo.cpp:67)
+==30823==    by 0x10B224: main (main.cpp:45)
+==30823==  Uninitialised value was created by a heap allocation
+==30823==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10B6B1: getDates(char*) (todo.cpp:22)
+==30823==    by 0x10B024: main (main.cpp:34)
+==30823== 
+==30823== 
+==30823== 1 errors in context 6 of 6:
+==30823== Conditional jump or move depends on uninitialised value(s)
+==30823==    at 0x10B865: getDay(char**, int, char const*) (todo.cpp:67)
+==30823==    by 0x10B0F0: main (main.cpp:41)
+==30823==  Uninitialised value was created by a heap allocation
+==30823==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30823==    by 0x10B6B1: getDates(char*) (todo.cpp:22)
+==30823==    by 0x10B024: main (main.cpp:34)
+==30823== 
+==30823== ERROR SUMMARY: 6 errors from 6 contexts (suppressed: 0 from 0)
