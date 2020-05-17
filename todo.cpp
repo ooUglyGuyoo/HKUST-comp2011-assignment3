@@ -70,6 +70,7 @@ int getDay(char** dates, int dateCount, const char* date){
         }
         else{}
     }
+    return 0;
 }
 
 Place* getPlaces(char** csvLines, int csvLineCount)
@@ -83,10 +84,9 @@ Place* getPlaces(char** csvLines, int csvLineCount)
         int commaCount = 0;
         int start = 0;
         int linecount = 0;
-        Node* tail = new Node();
+        Node* tail;
         for (int i = 0; currentLine[i] ; i++)
         {
-            Node *datastorage = new Node();
             if (currentLine[i] == ',')
             {
                 commaCount += 1;
@@ -96,6 +96,7 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                     if (start == i)
                     {
                         places[placeCount].province = nullptr;
+                        delete [] substr;
                     }
                     else
                     {
@@ -108,10 +109,10 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                 }
                 else if (commaCount >= 5 && atoi(substr) != 0 && linecount == 0)
                 {
+                    Node *datastorage = new Node();
                     places[placeCount].headNode = datastorage;
                     datastorage->day = commaCount - 4;
                     datastorage->number = atoi(substr);
-                    tail->next = datastorage;
                     tail = datastorage;
                     dataCount += 1;
                     linecount += 1;
@@ -119,6 +120,7 @@ Place* getPlaces(char** csvLines, int csvLineCount)
                 }
                 else if (commaCount >= 5 && linecount != 0)
                 {
+                    Node *datastorage = new Node();
                     datastorage->day = commaCount - 4;
                     datastorage->number = atoi(substr);
                     tail->next = datastorage;
@@ -135,6 +137,7 @@ Place* getPlaces(char** csvLines, int csvLineCount)
             }
             if ( !currentLine[i+1] )
             {
+                Node *datastorage = new Node();
                 char* substr = substring(currentLine, start, i);
                 datastorage->day = commaCount - 3;
                 datastorage->number = atoi(substr);
@@ -203,7 +206,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                     Node* tailfrom;
                     tailfrom = places[i].headNode;
                     tailto = places[j].headNode;
-                    for (int k = 0; k < difference; k++)
+                    for (int k = 0; k < difference && tailto != nullptr; k++)
                     {
                         tailto = tailto->next;
                     }
@@ -356,7 +359,7 @@ void changeToNDayGrowth(Place* places, int placeCount, int n){
         if (check == true)
         {
             tail = places[i].headNode;
-            for (int k = 0; k < countail + 4; k++)
+            for (int k = 0; k < countail + 4 && tail != nullptr; k++)
             {
                 tail = tail -> next;
             }
@@ -394,28 +397,34 @@ void writeCSV(const char* csvFileName, Place* places, int placeCount){
 void deallocateCSVLines(char** csvLines, int csvLineCount){
     for (int i = 0; i < csvLineCount; i++)
     {
-        delete [] &csvLines[i];
         delete [] csvLines[i];
     }
+    delete [] csvLines;
 }
 
 void deallocateDates(char** dates, int dateCount){
     for (int i = 0; i < dateCount; i++)
     {
-        delete [] &dates[i];
         delete [] dates[i];
     }
+    delete [] dates;
 }
 
 void deallocateLinkedList(Node* headNode){
-    delete [] &headNode;
-    delete [] headNode;
+    while (headNode != nullptr) {
+        Node* next = headNode->next;
+        delete headNode;
+        headNode = next;
+    }
 }
 
 void deallocatePlaces(Place* places, int placeCount){
     for (int i = 0; i < placeCount; i++)
     {
-        delete [] &places[i];
+        deallocateLinkedList(places[i].headNode);
+        delete [] places[i].province;
+        delete [] places[i].region;
     }
+    delete [] places;
 }
 
