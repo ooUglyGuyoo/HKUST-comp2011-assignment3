@@ -161,7 +161,10 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
     {
         if (places[i].province != nullptr && strcmp(places[i].province,home) == 0)
         {
-            char* newString = new char[16];
+            delete [] places[i].province;
+            if (places[i].region != nullptr)
+                delete [] places[i].region;
+            char* newString = new char[99];
             strcpy(newString, home);
             strcat(newString, "(Home)");
             places[i].region = newString;
@@ -183,7 +186,11 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                 if ( places[i].headNode->next->day == places[j].headNode->next->day)
                 {
                     //cout << "merge " << i << " to " << j << endl;
+                    if (places[i].region != nullptr)
+                        delete [] places[i].region;
                     places[i].region = nullptr;
+                    if (places[i].province != nullptr)
+                        delete [] places[i].province;
                     places[i].province = nullptr;
                     Node* tailto ;
                     Node* tailfrom ;
@@ -195,12 +202,18 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
+                    delete tailto;
+                    delete tailfrom;
                 }
                 else if ( places[i].headNode->next->day > places[j].headNode->next->day)
                 {
                     //cout << "merge " << i << " to " << j << endl;
                     int difference = places[i].headNode->next->day - places[j].headNode->next->day;
+                    if (places[i].region != nullptr)
+                        delete [] places[i].region;
                     places[i].region = nullptr;
+                    if (places[i].province != nullptr)
+                        delete [] places[i].province;
                     places[i].province = nullptr;
                     Node* tailto ;
                     Node* tailfrom;
@@ -216,13 +229,19 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
+                    delete tailto;
+                    delete tailfrom;
                 }
                 else if( places[i].headNode->next->day < places[j].headNode->next->day )    //places[i].headNode->next->day < places[j].headNode->next->day
                 {
                     //cout << "merge " << j << " to " << i << endl;
                     int difference = places[j].headNode->next->day - places[i].headNode->next->day;
-                    places[j].region = nullptr;
-                    places[j].province = nullptr;
+                    if (places[i].region != nullptr)
+                        delete [] places[i].region;
+                    places[i].region = nullptr;
+                    if (places[i].province != nullptr)
+                        delete [] places[i].province;
+                    places[i].province = nullptr;
                     Node* tailto;
                     Node* tailfrom;
                     tailfrom = places[j].headNode;
@@ -237,6 +256,8 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
+                    delete tailto;
+                    delete tailfrom;
                 }
             }
         }
@@ -251,10 +272,12 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
             mergedplaces[mergedplacesCount].region = places[i].region;
             mergedplaces[mergedplacesCount].province = nullptr;
             mergedplaces[mergedplacesCount].headNode = places[i].headNode;
+            places[i].region = nullptr;
+            places[i].headNode = nullptr;
             mergedplacesCount += 1;
         }
     }
-    delete [] places;
+    deallocatePlaces(places, originalPlaceCount);
     places = mergedplaces;
     return placeCount;
 }
@@ -287,6 +310,7 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
                 current = current->next;
                 day = day + 1;
             }
+            delete current;
         }
     }
 
@@ -306,11 +330,14 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
             normplaces[normCount].region = places[i].region;
             normplaces[normCount].province = places[i].province;
             normplaces[normCount].headNode = places[i].headNode;
+            places[i].province = nullptr;
+            places[i].region = nullptr;
+            places[i].headNode = nullptr;
             normCount += 1;
         }
     }
 
-    delete [] places;
+    deallocatePlaces(places, originalPlaceCount);
     places = normplaces;
 }
 
@@ -365,6 +392,7 @@ void changeToNDayGrowth(Place* places, int placeCount, int n){
             }
             tail -> next = nullptr;
         }
+        delete tail;
         delete [] copynum;
     }
 }
@@ -390,6 +418,7 @@ void writeCSV(const char* csvFileName, Place* places, int placeCount){
             ptr = ptr->next;
         }
         ofs << endl;
+        delete ptr;
     }
     ofs.close();
 }
@@ -422,8 +451,10 @@ void deallocatePlaces(Place* places, int placeCount){
     for (int i = 0; i < placeCount; i++)
     {
         deallocateLinkedList(places[i].headNode);
-        delete [] places[i].province;
-        delete [] places[i].region;
+        if (places[i].province != nullptr)
+            delete [] places[i].province;
+        if (places[i].region != nullptr)
+            delete [] places[i].region;
     }
     delete [] places;
 }
