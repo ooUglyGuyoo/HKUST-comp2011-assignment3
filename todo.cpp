@@ -155,7 +155,7 @@ Place* getPlaces(char** csvLines, int csvLineCount)
 }
 
 int mergeAllProvinces(Place*& places, int placeCount, const char* home){
-    home = "Hong Kong";
+    home = "Hong Kong"; 
     int originalPlaceCount = placeCount;
     for (int i = 0; i < placeCount; i++)
     {
@@ -170,6 +170,15 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
             places[i].region = newString;
             places[i].province = nullptr;
         }
+        if (places[i].headNode == nullptr) 
+        {
+            if (places[i].region != nullptr)
+                delete [] places[i].region;
+            if (places[i].province != nullptr)
+                delete [] places[i].province;
+            places[i].region = nullptr;
+            places[i].province = nullptr;
+        }
     }
     // merge the data and set all already merged provinces's region and province into nullptr
     for (int i = 0; i < originalPlaceCount ; i++)
@@ -178,8 +187,8 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
         {
             if(places[j].region != nullptr 
             && places[i].region != nullptr
-            && places[i].headNode != nullptr 
-            && places[j].headNode != nullptr 
+            && places[i].headNode != nullptr
+            && places[j].headNode != nullptr
             && strcmp(places[i].region,places[j].region) == 0 )
             {
                 placeCount -= 1;
@@ -202,8 +211,6 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
-                    delete tailto;
-                    delete tailfrom;
                 }
                 else if ( places[i].headNode->next->day > places[j].headNode->next->day)
                 {
@@ -229,19 +236,17 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
-                    delete tailto;
-                    delete tailfrom;
                 }
                 else if( places[i].headNode->next->day < places[j].headNode->next->day )    //places[i].headNode->next->day < places[j].headNode->next->day
                 {
                     //cout << "merge " << j << " to " << i << endl;
                     int difference = places[j].headNode->next->day - places[i].headNode->next->day;
-                    if (places[i].region != nullptr)
-                        delete [] places[i].region;
-                    places[i].region = nullptr;
-                    if (places[i].province != nullptr)
-                        delete [] places[i].province;
-                    places[i].province = nullptr;
+                    if (places[j].region != nullptr)
+                        delete [] places[j].region;
+                    places[j].region = nullptr;
+                    if (places[j].province != nullptr)
+                        delete [] places[j].province;
+                    places[j].province = nullptr;
                     Node* tailto;
                     Node* tailfrom;
                     tailfrom = places[j].headNode;
@@ -256,8 +261,6 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
                         tailfrom = tailfrom->next;
                         tailto = tailto->next;
                     }
-                    delete tailto;
-                    delete tailfrom;
                 }
             }
         }
@@ -310,7 +313,6 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
                 current = current->next;
                 day = day + 1;
             }
-            delete current;
         }
     }
 
@@ -391,6 +393,7 @@ void changeToNDayGrowth(Place* places, int placeCount, int n){
             {
                 tail = tail -> next;
             }
+            deallocateLinkedList(tail->next);
             tail -> next = nullptr;
         }
         delete tail;
