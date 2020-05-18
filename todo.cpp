@@ -1,6 +1,8 @@
 //submit this file ONLY
 //if you need to write your own helper functions, write the functions in this file
 //again, do NOT include additional libraries and make sure this todo.cpp can be compiled with the unmodified versions of the other given files in our official compilation environment
+//Name : LIANG Yuchen
+//SID  : 20582717
 
 #include "given.h"
 #include "todo.h"
@@ -155,7 +157,6 @@ Place* getPlaces(char** csvLines, int csvLineCount)
 }
 
 int mergeAllProvinces(Place*& places, int placeCount, const char* home){
-    home = "Hong Kong"; 
     int originalPlaceCount = placeCount;
     for (int i = 0; i < placeCount; i++)
     {
