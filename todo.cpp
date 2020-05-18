@@ -20,7 +20,7 @@ int getDateCount(char* headerLine){
 
 char** getDates(char *headerLine){
 
-	int size = 9999;
+	int size = 999999;
 	char **datelist = new char*[size];
 	int state = 0;
     int listcount = 0;
@@ -165,7 +165,7 @@ int mergeAllProvinces(Place*& places, int placeCount, const char* home){
             delete [] places[i].province;
             if (places[i].region != nullptr)
                 delete [] places[i].region;
-            char* newString = new char[99];
+            char* newString = new char[9999];
             strcpy(newString, home);
             strcat(newString, "(Home)");
             places[i].region = newString;
@@ -348,7 +348,7 @@ void normalizeDays(Place *& places, int& placeCount, int threshold){
 void changeToNDayGrowth(Place* places, int placeCount, int n){
     for (int i = 0; i < placeCount ; i++)
     {
-        Node* copynum = new Node[999];
+        Node* copynum = new Node[9999];
         Node* head = copynum;
         Node* tail = places[i].headNode;
         while (tail != nullptr)
